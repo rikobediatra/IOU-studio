@@ -1,7 +1,7 @@
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LocalInfo from "@/components/ui/localInfo";
 import Image from "next/image";
 
@@ -49,15 +49,81 @@ export default function Navbar() {
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-background">
+
+            <SheetContent
+              side="right"
+              className="w-full h-screen bg-black text-white border-none p-8 flex flex-col justify-between
+                [&>button]:hidden
+              ">
               <SheetHeader className="hidden">
                 <SheetTitle>
                   Title
                 </SheetTitle>
               </SheetHeader>
-              <div className="flex flex-col gap-8 mt-20 text-lg">
-                <Link href="/about">ABOUT</Link>
-                <Link href="/works">WORKS</Link>
+              {/* TOP AREA */}
+              <div>
+                <div className="flex items-center justify-between mb-16">
+                  <span className="text-xl font-semibold tracking-wide">
+                    IOU
+                  </span>
+                  <SheetClose asChild>
+                    <button
+                      className="
+                        w-10 h-10
+                        rounded-full
+                        bg-neutral-200
+                        flex items-center justify-center
+                        transition-all duration-300
+                        hover:bg-white
+                        hover:scale-105
+                      "
+                    >
+                      <X className="w-4 h-4 text-black" strokeWidth={1.5} />
+                    </button>
+                  </SheetClose>
+                </div>
+
+                {/* Main Menu */}
+                <nav className="flex flex-col gap-8 text-4xl tracking-wide">
+                  <Link href="/" className="opacity-80 hover:opacity-100 transition">
+                    HOME
+                  </Link>
+                  <Link href="/about" className="opacity-80 hover:opacity-100 transition">
+                    ABOUT
+                  </Link>
+                  <Link href="/works" className="opacity-80 hover:opacity-100 transition">
+                    WORKS
+                  </Link>
+                </nav>
+              </div>
+
+              {/* BOTTOM AREA */}
+              <div className="space-y-10 text-sm">
+                <div>
+                  <p className="mb-3 uppercase tracking-widest text-xs opacity-60">
+                    MAIN OFFICE
+                  </p>
+                  <p className="opacity-70 leading-relaxed">
+                    SEMAMPIR BARAT 18,<br />
+                    SURABAYA 60119<br />
+                    EAST JAVA, INDONESIA
+                  </p>
+                </div>
+                <div>
+                  <p className="mb-3 uppercase tracking-widest text-xs opacity-60">
+                    CONTACT
+                  </p>
+                  <div className="flex flex-wrap gap-6 opacity-70">
+                    <span>EMAIL</span>
+                    <span>INSTAGRAM</span>
+                    <span>BEHANCE</span>
+                    <span>LINKEDIN</span>
+                  </div>
+                </div>
+                <div className="flex justify-between text-xs opacity-60 pt-6 border-t border-white/10">
+                  <span>ALL RIGHTS RESERVED.</span>
+                  <span>PRIVACY POLICY</span>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
