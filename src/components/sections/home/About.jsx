@@ -5,14 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 
-const images = [
-  '/images/About.png',
-  '/images/About.png',
-  '/images/About.png',
-  '/images/About.png'
-];
-
-export default function About() {
+export default function About({ images }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center', containScroll: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -77,7 +70,7 @@ export default function About() {
                 that are not only beautiful but also meaningful for people and communities.
               </p>
             </div>
-            <button className="px-6 py-2 rounded-full text-sm flex gap-4 items-center hover:bg-black hover:text-white transition">
+            <button className="px-6 py-2 rounded-full text-sm flex gap-4 items-center hover:bg-black hover:text-white transition hover:cursor-pointer">
               LEARN MORE <span className=""><MoveRight /></span>
             </button>
           </div>
