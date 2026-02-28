@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/home/Hero";
 import About from "@/components/sections/home/About";
 import Services from "@/components/sections/home/Services";
+import Works from "@/components/sections/home/Works";
 
 export default function Home() {
   const imagesForAbout = [
@@ -43,11 +44,35 @@ export default function Home() {
     },
   ];
 
+  const listProjects = [
+    {
+      projectId: "P-001",
+      projectName: "PROJECT NAME",
+      image: "/images/works.png",
+    },
+    {
+      projectId: "P-002",
+      projectName: "PROJECT NAME",
+      image: "/images/works.png",
+    },
+    {
+      projectId: "P-003",
+      projectName: "PROJECT NAME",
+      image: "/images/works.png",
+    },
+    {
+      projectId: "P-004",
+      projectName: "PROJECT NAME",
+      image: "/images/works.png",
+    },
+  ];
+
   return (
     <>
       <Hero />
-      <About images={ imagesForAbout } />
-      <Services listService={ listService }/>
+      <About images={imagesForAbout} />
+      <Services listService={listService} />
+      <Works listProjects={listProjects} />
     </>
   );
 }
