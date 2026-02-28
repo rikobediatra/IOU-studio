@@ -49,7 +49,10 @@ export default function About({ images }) {
   }, [emblaApi]);
 
   return (
-    <section className="min-h-screen w-full pt-28 px-6 md:px-10">
+    <section 
+      id="about" 
+      className="min-h-screen w-full pt-28 px-6 md:px-10"
+    >
       {/* CONTENT */}
       <div className="mb-20 grid grid-cols-1 gap-4 md:grid-cols-2">
         <h2 className="md:col-span-2 text-5xl mb-10">ABOUT</h2>

@@ -3,7 +3,10 @@ import { MoveRight } from "lucide-react";
 
 export default function Works({ listProjects }) {
   return (
-    <section className="min-h-screen w-full pt-28 px-6 md:px-10">
+    <section 
+      id="works"
+      className="min-h-screen w-full pt-28 px-6 md:px-10"
+    >
       <div className="mb-20 grid grid-cols-1 gap-4">
         <h2 className="text-5xl mb-10 uppercase">WORKS</h2>
         <p className="text-xl uppercase">

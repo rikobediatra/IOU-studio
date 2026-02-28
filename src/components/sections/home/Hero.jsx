@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { ArrowDown } from "lucide-react"
 
@@ -48,8 +49,15 @@ export default function Hero() {
             </p>
           </div>
           <div>
-            <button className="flex items-center justify-center w-12 h-12 rounded-full bg-white text-black">
-              <ArrowDown size={18} />
+            <button
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-black cursor-pointer"
+              href="#works"
+              onClick={() => {
+                const section = document.getElementById('works')
+                section?.scrollIntoView({ behavior: 'smooth'})
+              }}
+            >
+              <ArrowDown size={24} />
             </button>
           </div>
         </div>
