@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { Square } from "phosphor-react"
 
 export default function LocalInfo() {
   const [time, setTime] = useState("");
@@ -13,9 +13,6 @@ export default function LocalInfo() {
     const locale = navigator.language;
 
     const city = timeZone.split("/")[1]?.replace("_", " ");
-
-    const regionCode = locale.split("-")[1];
-    const regionNames = new Intl.DisplayNames([locale], { type: "region" });
     const country = "Indonesia";
 
     const updateClock = () => {
@@ -43,16 +40,10 @@ export default function LocalInfo() {
   }, []);
 
   return (
-    <div className="text-background flex items-center gap-4 tracking-wide">
+    <div className="text-background flex items-center gap-4 text-[1rem] font-light tracking-[-2%]">
       <span className="opacity-60 hover:opacity-100">{location}</span>
-      <span className="opacity-60 hover:opacity-100">
-        <Image
-          src="/icons/divider.png"
-          alt="square"
-          width={4}
-          height={4}
-          className="bg-foreground opacity-60 hover:opacity-100"
-        />
+      <span className="opacity-60 hover:opacity-100 bg-foreground">
+        <Square width={4} height={4} color="#EBEBEB"/>
       </span>
       <span>
         {time} {gmt}
