@@ -6,7 +6,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
@@ -104,5 +103,23 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply uppercase tracking-[-2%] leading-[110%] text-[2.5rem] md:text-[4rem] 
+  }
+  h2 {
+    @apply uppercase tracking-[-2%] leading-[110%] text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] 
+  }
+  h3 {
+    @apply uppercase tracking-[-2%] leading-[110%] text-[1.5rem] lg:text-[2rem] 
+  }
+  h4 {
+    @apply uppercase leading-[110%] text-lg lg:text-xl
+  }
+  p {
+    @apply uppercase leading-[160%] text-sm font-light
+  }
+  button {
+    @apply uppercase text-sm font-light px-8 py-[0.813rem]
   }
 }

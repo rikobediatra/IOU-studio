@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
+import { Minus, Plus } from "phosphor-react"
 
 export default function Accordion({ listService }) {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -28,7 +29,7 @@ export default function Accordion({ listService }) {
             >
               <h3
                 className={`
-                  text-[2rem] tracking-wide transition-all duration-300
+                  transition-all duration-300
                   ${isOpen ? "text-foreground" : "text-foreground/50"}
                 `}
               >
@@ -46,7 +47,7 @@ export default function Accordion({ listService }) {
                       transition={{ duration: 0.2 }}
                       className="absolute text-4xl text-foreground/70"
                     >
-                      −
+                      <Minus />
                     </motion.span>
                   ) : (
                     <motion.span
@@ -57,7 +58,7 @@ export default function Accordion({ listService }) {
                       transition={{ duration: 0.2 }}
                       className="absolute text-4xl text-foreground/70"
                     >
-                      +
+                      <Plus />
                     </motion.span>
                   )}
                 </AnimatePresence>
@@ -75,14 +76,14 @@ export default function Accordion({ listService }) {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-16">
+                  <div className="flex flex-col px-6 lg:flex-row lg:items-end lg:justify-between gap-16">
                   
                     {/* TEXT */}
                     <motion.p
                       initial={{ x: -40, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.6 }}
-                      className="text-sm md:max-w-md lg:max-w-2xl leading-relaxed text-foreground/70"
+                      className="text-sm font-light md:max-w-md lg:max-w-2xl leading-relaxed text-foreground/70"
                     >
                       {service.description}
                     </motion.p>
@@ -98,6 +99,7 @@ export default function Accordion({ listService }) {
                         src={service.image}
                         alt={service.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 672px"
                         className="object-cover"
                       />
                     </motion.div>
