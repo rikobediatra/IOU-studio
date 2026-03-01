@@ -4,13 +4,6 @@ import Services from "@/components/sections/home/Services";
 import Works from "@/components/sections/home/Works";
 
 export default function Home() {
-  const imagesForAbout = [
-    "/images/About.png",
-    "/images/About.png",
-    "/images/About.png",
-    "/images/About.png",
-  ];
-
   const listService = [
     {
       title: "INDUSTRIAL DESIGN",
@@ -70,7 +63,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About images={imagesForAbout} />
+      <About />
       <Services listService={listService} />
       <Works listProjects={listProjects} />
     </>

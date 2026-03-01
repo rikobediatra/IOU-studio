@@ -1,6 +1,7 @@
+"use client"
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { List, X} from "phosphor-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LocalInfo from "@/components/ui/localInfo";
 import Image from "next/image";
@@ -18,8 +19,7 @@ export default function Navbar() {
                 alt="Logo Image IOU"
                 width={40}
                 height={40}
-                priority
-                className="object-cover"
+                className="h-auto w-12 object-cover"
               />
             </Link>
           </div>
@@ -46,7 +46,7 @@ export default function Navbar() {
           <Sheet>
             <SheetTrigger asChild>
               <button className="p-2 rounded-full border border-border bg-background">
-                <Menu className="w-6 h-6" />
+                <List className="w-6 h-6" width={14} height={14}/>
               </button>
             </SheetTrigger>
 
@@ -70,6 +70,7 @@ export default function Navbar() {
                     <button
                       className="
                         w-10 h-10
+                        p-0
                         rounded-full
                         bg-neutral-200
                         flex items-center justify-center

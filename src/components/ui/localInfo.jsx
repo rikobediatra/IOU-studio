@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function LocalInfo() {
   const [time, setTime] = useState("");
@@ -44,7 +45,15 @@ export default function LocalInfo() {
   return (
     <div className="text-background flex items-center gap-4 tracking-wide">
       <span className="opacity-60 hover:opacity-100">{location}</span>
-      <span className="opacity-60 hover:opacity-100">•</span>
+      <span className="opacity-60 hover:opacity-100">
+        <Image
+          src="/icons/divider.png"
+          alt="square"
+          width={4}
+          height={4}
+          className="bg-foreground opacity-60 hover:opacity-100"
+        />
+      </span>
       <span>
         {time} {gmt}
       </span>

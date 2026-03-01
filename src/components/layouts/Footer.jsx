@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { MoveRight, MoveUp } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -9,23 +10,23 @@ export default function Footer() {
       {/* TOP SECTION */}
       <div className="flex flex-col items-center md:items-start md:flex-row md:justify-between gap-10 mb-20">
         {/* LEFT TITLE */}
-        <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
+        <h2>
           CONTACT US
         </h2>
 
         {/* RIGHT CTA */}
         <div className="max-w-md flex flex-col">
-          <p className="text-xl tracking-wide mb-6">
+          <h4 className="mb-6">
             READY TO DESIGN WHAT’S NEXT? <br />
             LET’S WORK TOGETHER.
-          </p>
+          </h4>
 
           <button className="
-            cursor-pointer bg-primary text-white mx-16 py-3 rounded-full text-xs tracking-widest hover:bg-primary transition
-            flex flex-row justify-center items-center gap-2
+            cursor-pointer bg-primary text-white mx-16 rounded-full hover:bg-primary transition
+            flex flex-row justify-center items-center gap-4.5
             opacity-70 hover:opacity-100
           ">
-            LET’S COLLABORATE <span><MoveRight /></span>
+            LET’S COLLABORATE <span><ArrowRight width={16} height={16} /></span>
           </button>
         </div>
       </div>
@@ -34,11 +35,11 @@ export default function Footer() {
       <div className="flex flex-col gap-10 md:flex-row md:justify-between text-sm mb-10 uppercase">
         {/* GENERAL MENU */}
         <div className="flex items-start justify-between md:gap-10 lg:gap-20">
-          <div className="font-bold text-base">
+          <div className="font-normal text-base">
             <h4>GENERAL MENU</h4>
           </div>
           <div>
-            <ul className="text-sm flex flex-col items-end gap-6 opacity-60">
+            <ul className="leading-[160%] text-sm font-light flex flex-col items-end gap-6 opacity-60">
               <li><Link href="/">HOME</Link></li>
               <li><Link href="/about">ABOUT</Link></li>
               <li><Link href="/works">WORKS</Link></li>
@@ -48,11 +49,11 @@ export default function Footer() {
 
         {/* CONTACT */}
         <div className="flex items-start justify-between md:gap-10 lg:gap-20">
-          <div className="font-bold text-base">
+          <div className="font-normal text-base">
             <h4>Contact</h4>
           </div>
           <div>
-            <ul className="text-sm flex flex-col items-end gap-6 opacity-60">
+            <ul className="leading-[160%] text-sm font-light flex flex-col items-end gap-6 opacity-60">
               <li><a href="#">EMAIL</a></li>
               <li><a href="#">INSTAGRAM</a></li>
               <li><a href="#">BEHANCE</a></li>
@@ -63,10 +64,10 @@ export default function Footer() {
 
         {/* MAIN OFFICE */}
         <div className="flex items-start justify-between md:gap-10 lg:gap-20">
-          <div className="font-bold text-base">
+          <div className="font-normal text-base">
             <h4>Main Office</h4>
           </div>
-          <div className="opacity-60 flex flex-col items-end">
+          <div className="leading-[160%] text-sm font-light opacity-60 flex flex-col items-end">
             <p>SEMAMPIR BARAT 18,</p>
             <p>SURABAYA 60119</p>
             <p>EAST JAVA, INDONESIA</p>
@@ -75,8 +76,8 @@ export default function Footer() {
       </div>
 
       {/* DIVIDER */}
-      <div className="border-t-2 border-foreground- text-foreground opacity-60 text-base">
-        <div className="grid grid-cols-2 grid-rows-2 gap-4">
+      <div className="border-t-2 border-foreground- text-foreground opacity-60">
+        <div className="grid grid-cols-2 grid-rows-2 p-0 gap-4">
           <p>© 2025 LOU STUDIO</p>
           <div
             className="
@@ -90,12 +91,12 @@ export default function Footer() {
           </div>
           <div
             className="
-              col-start-2 row-start-1 my-auto
+              col-start-2 row-start-1 my-auto ml-auto
               md:row-span-2 md:col-start-2 md:row-start-1
           ">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-center gap-2 float-right 
+              className="flex items-center px-0 gap-2 float-right leading-[160%] text-sm font-light
                 hover:text-black transition cursor-pointer
               ">
               GO BACK UP <span><MoveUp size={14}/></span>

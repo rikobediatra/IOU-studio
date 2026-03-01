@@ -1,5 +1,7 @@
+"use client"
+
 import Image from "next/image";
-import { MoveRight } from "lucide-react";
+import { ArrowRight} from "phosphor-react";
 
 export default function Works({ listProjects }) {
   return (
@@ -9,10 +11,10 @@ export default function Works({ listProjects }) {
     >
       <div className="mb-20 grid grid-cols-1 gap-4">
         <h2 className="text-5xl mb-10 uppercase">WORKS</h2>
-        <p className="text-xl uppercase">
+        <h4 className="text-xl uppercase">
           From Idea <br />
           To Impact
-        </p>
+        </h4>
       </div>
 
       {/* CONTENT */}
@@ -43,10 +45,10 @@ export default function Works({ listProjects }) {
       {/* FOOTER BUTTON */}
       <div className="my-10 flex justify-center">
         <button className="
-          border border-black rounded-full flex flex-row items-center gap-2.5 px-8 py-3 text-xs tracking-widest transition-all duration-300 
+          border border-black rounded-full flex flex-row items-center gap-4.5 transition-all duration-300
           cursor-pointer hover:bg-black hover:text-white
         ">
-          SEE OUR WORKS <span><MoveRight /></span>
+          SEE OUR WORKS <span><ArrowRight width={14} height={14} /></span>
         </button>
       </div>
     </section>
