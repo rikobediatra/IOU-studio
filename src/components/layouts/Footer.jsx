@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MoveRight, MoveUp } from "lucide-react";
-import { ArrowRight, ArrowUp } from "lucide-react";
+import { ArrowRight, ArrowUp } from "phosphor-react";
 
 export default function Footer() {
   return (
@@ -99,7 +98,7 @@ export default function Footer() {
               className="flex items-center px-0 gap-2 float-right leading-[160%] text-sm font-light
                 hover:text-black transition cursor-pointer
               ">
-              GO BACK UP <span><MoveUp size={14}/></span>
+              GO BACK UP <span><ArrowUp size={14}/></span>
             </button>
           </div>
         </div>
