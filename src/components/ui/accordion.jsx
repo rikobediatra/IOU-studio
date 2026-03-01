@@ -45,9 +45,9 @@ export default function Accordion({ listService }) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 6 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute text-4xl text-foreground/70"
+                      className="absolute text-foreground/70"
                     >
-                      <Minus />
+                      <Minus width={14} height={14}/>
                     </motion.span>
                   ) : (
                     <motion.span
@@ -56,9 +56,9 @@ export default function Accordion({ listService }) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute text-4xl text-foreground/70"
+                      className="absolute text-foreground/70"
                     >
-                      <Plus />
+                      <Plus width={14} height={14}/>
                     </motion.span>
                   )}
                 </AnimatePresence>
