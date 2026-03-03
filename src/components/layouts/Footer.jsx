@@ -14,14 +14,14 @@ export default function Footer() {
         </h2>
 
         {/* RIGHT CTA */}
-        <div className="max-w-md flex flex-col">
-          <h4 className="mb-6">
+        <div className="max-w-md flex flex-col md:items-start">
+          <h4 className="mb-6 text-center md:text-start">
             READY TO DESIGN WHAT’S NEXT? <br />
             LET’S WORK TOGETHER.
           </h4>
 
           <button className="
-            cursor-pointer bg-primary text-white mx-16 rounded-full hover:bg-primary transition
+            cursor-pointer bg-primary text-white rounded-full hover:bg-primary transition
             flex flex-row justify-center items-center gap-4.5
             opacity-70 hover:opacity-100
           ">

@@ -60,9 +60,9 @@ export default function About() {
           <Image
             src="/images/About.png"
             alt="About Image"
-            width={1600}
+            width={800}
             height={720}
-            className="w-full object-cover"
+            className="w-full h-180 object-cover"
           />
         </motion.div>
       </div>

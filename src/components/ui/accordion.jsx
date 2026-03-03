@@ -25,7 +25,7 @@ export default function Accordion({ listService }) {
             {/* HEADER */}
             <button
               onClick={() => toggleService(index)}
-              className="w-full flex items-center justify-between text-left group hover:cursor-pointer"
+              className="px-0 w-full flex items-center justify-between text-left group hover:cursor-pointer"
             >
               <h3
                 className={`
@@ -76,7 +76,7 @@ export default function Accordion({ listService }) {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="flex flex-col px-6 lg:flex-row lg:items-end lg:justify-between gap-16">
+                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-16">
                   
                     {/* TEXT */}
                     <motion.p
