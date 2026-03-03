@@ -55,14 +55,15 @@ export default function About() {
             damping: 25
           }}
           style={{ transformOrigin: "center" }}
-          className="relative w-full h-180"
+          className="relative w-full aspect-video max-h-180 overflow-hidden"
         >
           <Image
             src="/images/About.png"
             alt="About Image"
-            width={1600}
-            height={720}
-            className="w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority
           />
         </motion.div>
       </div>
