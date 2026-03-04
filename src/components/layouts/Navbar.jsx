@@ -5,17 +5,31 @@ import { List, X} from "phosphor-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import LocalInfo from "@/components/ui/localInfo";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+const routeBgColor = {
+  '/about': 'bg-background'
+};
+
+const routeTextColor = {
+  '/about': 'text-foreground'
+}
 
 export default function Navbar() {
+  const pathName = usePathname();
+  const bgColor = routeBgColor[pathName] || 'bg-foreground';
+  const textColor = routeTextColor[pathName] || 'text-background';
+  const images = bgColor === 'bg-foreground' ? '/images/CompanyLogoWhite.png' : '/images/CompanyLogoBlack.png'
+
   return (
-    <header className="top-0 left-0 right-0 bg-foreground backdrop-blur-xl">
-      <div className="w-full flex items-center justify-between px-6 md:px-10 border border-black h-20">
+    <header className={`top-0 left-0 right-0 ${bgColor} backdrop-blur-xl`}>
+      <div className="w-full flex items-center justify-between px-6 md:px-10 h-20">
         <div className="flex items-center text-base">
           <div>
           {/* Logo */}
             <Link href="/" className="text-xl font-semibold tracking-wide">
               <Image 
-                src="/images/CompanyLogo.png"
+                src={images}
                 alt="Logo Image IOU"
                 width={40}
                 height={40}
@@ -26,10 +40,10 @@ export default function Navbar() {
           <div className="pl-20">
             {/* Desktop Menu */}
             <nav className="hidden md:flex items-center gap-6 text-sm tracking-wide">
-              <Link href="/about" className="text-background transition-colors opacity-60 hover:opacity-100">
+              <Link href="/about" className={`${textColor} transition-colors opacity-60 hover:opacity-100`}>
                 ABOUT
               </Link>
-              <Link href="/works" className="text-background transition-colors opacity-60 hover:opacity-100">
+              <Link href="/works" className={`${textColor} transition-colors opacity-60 hover:opacity-100`}>
                 WORKS
               </Link>
             </nav>
@@ -37,8 +51,8 @@ export default function Navbar() {
         </div>
 
         {/* Right Info Desktop */}
-        <div className="text-background hidden md:flex items-center gap-6">
-          <LocalInfo />
+        <div className={`${textColor} hidden md:flex items-center gap-6`}>
+          <LocalInfo textColor bgColor/>
         </div>
 
         {/* Mobile Menu */}

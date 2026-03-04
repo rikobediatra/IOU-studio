@@ -3,7 +3,7 @@ import About from "@/components/sections/home/About";
 import Services from "@/components/sections/home/Services";
 import Works from "@/components/sections/home/Works";
 
-export default function Home() {
+export default function HomePages() {
   const listService = [
     {
       title: "INDUSTRIAL DESIGN",
