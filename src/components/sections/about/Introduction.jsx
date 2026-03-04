@@ -31,7 +31,7 @@ export default function Introduction() {
           src="/images/About.png"
           alt="about IOU Studio"
           fill
-          sizes="100vw"
+          sizes="(max-width: 1024px) 100vw, 672px"
           className="object-cover"
         />
       </div>
