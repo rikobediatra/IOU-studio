@@ -66,9 +66,9 @@ export default function Navbar() {
 
             <SheetContent
               side="right"
-              className="w-full h-screen bg-black text-white border-none p-8 flex flex-col justify-between
+              className={`w-full h-screen ${bgColor} ${textColor} border-none p-8 flex flex-col justify-between
                 [&>button]:hidden
-              ">
+              `}>
               <SheetHeader className="hidden">
                 <SheetTitle>
                   Title
@@ -82,16 +82,16 @@ export default function Navbar() {
                   </span>
                   <SheetClose asChild>
                     <button
-                      className="
+                      className={`
                         w-10 h-10
                         p-0
                         rounded-full
                         bg-neutral-200
                         flex items-center justify-center
                         transition-all duration-300
-                        hover:bg-white
+                        hover:${bgColor}
                         hover:scale-105
-                      "
+                      `}
                     >
                       <X className="w-4 h-4 text-black" strokeWidth={1.5} />
                     </button>

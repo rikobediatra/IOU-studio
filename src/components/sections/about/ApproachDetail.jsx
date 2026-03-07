@@ -52,6 +52,7 @@ export default function ApproachDetail({ item, index }) {
           src="/images/approach/Approach.png"
           alt={item.title}
           fill
+          sizes="240px"
           className="object-cover object-center"
         />
       </motion.div>

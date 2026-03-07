@@ -5,7 +5,10 @@ import { ArrowRight, ArrowUp } from "phosphor-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-200 text-black px-6 md:px-16 pt-20 pb-6">
+    <footer 
+      id="footer"
+      className="bg-neutral-200 text-black px-6 md:px-16 pt-20 pb-6"
+    >
       {/* TOP SECTION */}
       <div className="flex flex-col items-center md:items-start md:flex-row md:justify-between gap-10 mb-20">
         {/* LEFT TITLE */}
