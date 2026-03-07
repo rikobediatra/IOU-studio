@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import { Square } from "phosphor-react"
 
-export default function LocalInfo() {
+export default function LocalInfo({ textColor, bgColor }) {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [gmt, setGmt] = useState("");
-
+  const squareColor = bgColor === 'bg-foreground' ? '#EBEBEB' : '#181818';
+  console.log()
   useEffect(() => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const locale = navigator.language;
@@ -40,10 +41,10 @@ export default function LocalInfo() {
   }, []);
 
   return (
-    <div className="text-background flex items-center gap-4 text-[1rem] font-light tracking-[-2%]">
+    <div className={`${textColor} flex items-center gap-4 text-[1rem] font-light tracking-[-2%]`}>
       <span className="opacity-60 hover:opacity-100">{location}</span>
-      <span className="opacity-60 hover:opacity-100 bg-foreground">
-        <Square width={4} height={4} color="#EBEBEB"/>
+      <span className={`opacity-60 hover:opacity-100 ${bgColor}`}>
+        <Square width={8} height={8} color={`${squareColor}`}/>
       </span>
       <span>
         {time} {gmt}

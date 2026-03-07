@@ -25,43 +25,45 @@ export default function Accordion({ listService }) {
             {/* HEADER */}
             <button
               onClick={() => toggleService(index)}
-              className="px-0 w-full flex items-center justify-between text-left group hover:cursor-pointer"
+              className="px-0 py-0 w-full text-left group hover:cursor-pointer"
             >
-              <h3
-                className={`
-                  transition-all duration-300
-                  ${isOpen ? "text-foreground" : "text-foreground/50"}
-                `}
-              >
-                {service.title}
-              </h3>
+              <div className="flex items-center justify-between">
+                <h3
+                  className={`
+                    transition-all duration-300
+                    ${isOpen ? "text-foreground" : "text-foreground/50"}
+                  `}
+                >
+                  {service.title}
+                </h3>
 
-              <div className="relative w-6 h-6 flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  {isOpen ? (
-                    <motion.span
-                      key="minus"
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 6 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute text-foreground/70"
-                    >
-                      <Minus width={14} height={14}/>
-                    </motion.span>
-                  ) : (
-                    <motion.span
-                      key="plus"
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -6 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute text-foreground/70"
-                    >
-                      <Plus width={14} height={14}/>
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    {isOpen ? (
+                      <motion.span
+                        key="minus"
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 6 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute text-foreground/70"
+                      >
+                        <Minus width={14} height={14}/>
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="plus"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute text-foreground/70"
+                      >
+                        <Plus width={14} height={14}/>
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </button>
 
@@ -76,17 +78,27 @@ export default function Accordion({ listService }) {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-16">
+                  <div className="flex flex-col lg:flex-row lg:justify-between gap-16 pt-6">
                   
                     {/* TEXT */}
-                    <motion.p
-                      initial={{ x: -40, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.6 }}
-                      className="text-sm font-light md:max-w-md lg:max-w-2xl leading-relaxed text-foreground/70"
-                    >
-                      {service.description}
-                    </motion.p>
+                    <div className="flex flex-col gap-6 lg:justify-between">
+                      <motion.h4
+                        initial={{ x: -40, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                        className="leading-[110%] text-lg lg:text-xl text-foreground/70"
+                      >
+                        { service.subTitle ? service.subTitle : '' }
+                      </motion.h4>
+                      <motion.p
+                        initial={{ x: -40, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-sm font-light md:max-w-md lg:max-w-2xl leading-relaxed text-foreground/70"
+                      >
+                        {service.description}
+                      </motion.p>
+                    </div>
 
                     {/* IMAGE */}
                     <motion.div
@@ -99,8 +111,9 @@ export default function Accordion({ listService }) {
                         src={service.image}
                         alt={service.title}
                         fill
+                        priority
                         sizes="(max-width: 1024px) 100vw, 672px"
-                        className="object-cover"
+                        className="object-cover object-center"
                       />
                     </motion.div>
                   </div>
