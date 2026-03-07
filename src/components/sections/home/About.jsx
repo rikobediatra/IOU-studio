@@ -62,6 +62,7 @@ export default function About() {
             alt="About Image"
             fill
             sizes="100vw"
+            unoptimized
             className="object-cover object-center"
             priority
           />

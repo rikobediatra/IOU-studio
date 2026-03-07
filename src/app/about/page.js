@@ -1,6 +1,7 @@
 import Introduction from "@/components/sections/about/Introduction";
 import Process from "@/components/sections/about/Process";
 import Approach from "@/components/sections/about/Approach";
+import OurTeam from "@/components/sections/about/Team";
 
 export default function AboutPages() {
   const listService = [
@@ -57,11 +58,30 @@ export default function AboutPages() {
     },
   ]
 
+  const team = [
+    {
+      name: "RADYAN ARTANTYO",
+      role: "CREATIVE DIRECTOR",
+      image: "/images/team/Radyan.png",
+    },
+    {
+      name: "KEVIN OCTAVIADYANTO",
+      role: "UI DESIGNER",
+      image: "/images/team/Kevin.png",
+    },
+    {
+      name: "N. FAIRUZ SINATRYA",
+      role: "ART DIRECTOR",
+      image: "/images/team/Fairuz.png",
+    },
+  ];
+
   return (
     <main className="px-6 md:px-10">
       <Introduction />
       <Process listService={listService}/>
       <Approach listApproach={listApproach}/>
+      <OurTeam listTeam={team}/>
     </main>
   );
 }
