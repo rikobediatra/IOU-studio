@@ -1,5 +1,6 @@
 import Introduction from "@/components/sections/about/Introduction";
 import Process from "@/components/sections/about/Process";
+import Approach from "@/components/sections/about/Approach";
 
 export default function AboutPages() {
   const listService = [
@@ -33,10 +34,34 @@ export default function AboutPages() {
     },
   ];
 
+  const listApproach = [
+    {
+      number: "01",
+      title: "HUMAN-CENTERED THINKING",
+      description: "People Are The Foundation Of Every Design Decision.",
+    },
+    {
+      number: "02",
+      title: "COLLABORATIVE SPIRIT",
+      description: "We Grow Ideas Together, Not Alone.",
+    },
+    {
+      number: "03",
+      title: "FOCUSED ON FUNCTIONALITY",
+      description: "We Design For Longevity, Not Fashion.",
+    },
+    {
+      number: "04",
+      title: "CURIOSITY & CRAFT",
+      description: "Detail And Discovery Guide Our Creative Process.",
+    },
+  ]
+
   return (
     <main className="px-6 md:px-10">
       <Introduction />
       <Process listService={listService}/>
+      <Approach listApproach={listApproach}/>
     </main>
   );
 }

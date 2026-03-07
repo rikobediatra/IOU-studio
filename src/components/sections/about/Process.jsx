@@ -6,10 +6,10 @@ export default function Process({ listService }) {
   return (
     <section
       id="process"
-      className="min-h-screen w-full pt-30 border border-red-500"
+      className="min-h-screen w-full pt-30"
     >
       <div className="mb-20 grid grid-cols-1">
-        <h2 className="mb-10">Our process</h2>
+        <h2 className="mb-10">Our Process</h2>
         <h4>
           How We Design —<br />
           From Idea to Impact
