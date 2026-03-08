@@ -8,7 +8,7 @@ export default function TeamCard({ member }) {
         alt={member.name}
         fill
         unoptimized
-        className="object-cover transition duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105"
+        className="object-cover transition duration-500 lg:opacity-60 lg:group-hover:opacity-100 group-hover:scale-105"
       />
       
       {/* Overlay Teks (Nama & Role) */}
