@@ -47,12 +47,11 @@ export default function About() {
         className="w-full overflow-hidden"
       >
         <motion.div
-          initial={{ scaleX: 0.5 }}
-          animate={{ scaleX: isInView ? 1 : 0.5 }}
+          initial={{ scaleX: 0.1, opacity: 0.7 }}
+          animate={{ scaleX: isInView ? 1 : 0.5, opacity: 1 }}
           transition={{
-            type: "spring",
-            stiffness: 40,
-            damping: 25
+            duration: 3,
+            ease: [0.22, 1, 0.36, 1],
           }}
           style={{ transformOrigin: "center" }}
           className="relative w-full aspect-video max-h-180 overflow-hidden"
