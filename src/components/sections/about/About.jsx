@@ -38,6 +38,10 @@ export default function About() {
           <button 
             className="flex flex-row gap-4.5 items-center border border-foreground bg-foreground text-background rounded-full w-56.75 cursor-pointer
               hover:bg-background hover:text-foreground transition"
+            onClick={() => {
+              const section = document.getElementById('footer')
+              section?.scrollIntoView({ behavior: 'smooth'})
+            }}
           >
             LET&apos;S COLLABORATE <span><ArrowRight width={16} height={16} /></span>
           </button>
