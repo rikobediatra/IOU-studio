@@ -60,7 +60,7 @@ export default function About() {
             src="/images/About.png"
             alt="About Image"
             fill
-            sizes="100vw"
+            sizes="(max-width: 1440px) 100vw, 1440px"
             unoptimized
             className="object-cover object-center"
             priority
