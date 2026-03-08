@@ -8,11 +8,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const routeBgColor = {
-  '/about': 'bg-background'
+  '/about': 'bg-background',
+  '/works': 'bg-background'
 };
 
 const routeTextColor = {
-  '/about': 'text-foreground'
+  '/about': 'text-foreground',
+  '/works': 'text-foreground'
 }
 
 export default function Navbar() {

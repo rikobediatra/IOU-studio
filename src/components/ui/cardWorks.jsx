@@ -1,0 +1,44 @@
+import Image from "next/image"
+
+export default function CardWorks({ work, active }) {
+  return (
+    <div className="group cursor-pointer">
+      {/* IMAGE */}
+      <div className="relative w-full aspect-4/3 overflow-hidden group:">
+        <Image
+          src={work.image}
+          alt={work.title}
+          fill
+          sizes="(max-width:768px) 100vw, 33vw"
+          className={`
+            object-cover
+            transition-opacity
+            duration-500
+            opacity-100
+            lg:opacity-40
+            lg:group-hover:opacity-100
+            lg:group-hover:scale-105
+          `}
+        />
+      </div>
+
+      {/* TEXT */}
+      <div 
+        className="
+          flex 
+          justify-between 
+          mt-4
+          transition-opacity
+          duration-500
+          opacity-100
+          lg:opacity-40
+          lg:group-hover:opacity-100
+        "
+      >
+        <p>{work.id}</p>
+        <p>{work.title}</p>
+      </div>
+
+    </div>
+  )
+}

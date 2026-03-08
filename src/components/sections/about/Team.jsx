@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import CardHero from "@/components/ui/cardHero";
 
 export default function OurTeam({ listTeam }) {
