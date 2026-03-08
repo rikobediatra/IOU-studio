@@ -1,6 +1,7 @@
 "use client"
 
 import CardWorks from "@/components/ui/cardWorks";
+import Link from "next/link";
 import { CaretRight } from "phosphor-react";
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ export default function MainWorks({ listWorks }) {
       <div className="pt-36 pb-11.25">
         <h2>WORKS</h2>
         <div className="uppercase flex flex-row gap-3 items-center pt-6">
-          <p className="text-foreground/40 text-[1rem]">Home</p>
+          <p className="text-foreground/40 text-[1rem]"><Link href="/">Home</Link></p>
           <span>
             <CaretRight />
           </span>

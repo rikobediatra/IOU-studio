@@ -15,6 +15,8 @@ export default function ApproachDetail({ item, index }) {
     hidden: { opacity: 0, y: 40 },
     show: { opacity: 1, y: 0 },
   };
+  const textOpacity =
+  "opacity-100 lg:opacity-40 lg:group-hover:opacity-100 transition-opacity duration-300";
 
   return (
     <div
@@ -37,8 +39,8 @@ export default function ApproachDetail({ item, index }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h4 className="text-foreground/40 mb-6">{item.number}</h4>
-          <h3 className="lg:max-w-52">{item.title}</h3>
-          <p className="text-[16px] lg:max-w-80 mt-15">{item.description}</p>
+          <h3 className={`mb-6 ${textOpacity}`}>{item.title}</h3>
+          <p className={`text-[16px] max-w-80 mt-15 ${textOpacity}`}>{item.description}</p>
         </motion.div>
       )}
 
@@ -72,8 +74,8 @@ export default function ApproachDetail({ item, index }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h4 className="text-foreground/40 mb-6">{item.number}</h4>
-          <h3 className="mb-6">{item.title}</h3>
-          <p className="text-[16px] max-w-80 mt-15">{item.description}</p>
+          <h3 className={`mb-6 ${textOpacity}`}>{item.title}</h3>
+          <p className={`text-[16px] max-w-80 mt-15 ${textOpacity}`}>{item.description}</p>
         </motion.div>
       )}
 
