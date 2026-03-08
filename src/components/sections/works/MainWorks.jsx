@@ -13,7 +13,7 @@ export default function MainWorks({ listWorks }) {
       className="min-h-[calc(100dvh-5rem)] w-full"
     >
       {/* BREADCRUMBS */}
-      <div className="pt-36 pb-11.25 border-b-2 border-[#BCBFC8]">
+      <div className="pt-36 pb-11.25">
         <h2>WORKS</h2>
         <div className="uppercase flex flex-row gap-3 items-center pt-6">
           <p className="text-foreground/40 text-[1rem]">Home</p>
