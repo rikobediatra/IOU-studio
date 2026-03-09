@@ -80,7 +80,7 @@ export default function Footer() {
       {/* DIVIDER */}
       <div className="border-t-2 border-foreground- text-foreground opacity-60">
         <div className="grid grid-cols-2 grid-rows-2 p-0 gap-4">
-          <p>© 2025 LOU STUDIO</p>
+          <p>© 2025 IOU STUDIO</p>
           <div
             className="
               col-span-2 col-start-1 row-start-2

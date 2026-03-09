@@ -7,7 +7,10 @@ import Image from "next/image";
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true })
+  const isInView = useInView(ref, { 
+    margin: "-30% 0px",
+    once: true 
+  })
 
   return (
     <section 
@@ -43,17 +46,23 @@ export default function About() {
 
       {/* IMAGES */}
       <div
-        ref={ref} 
+        ref={ref}
         className="w-full overflow-hidden"
       >
         <motion.div
-          initial={{ scaleX: 0.1, opacity: 0.7 }}
-          animate={{ scaleX: isInView ? 1 : 0.5, opacity: 1 }}
+          initial={{
+            clipPath: "inset(0 50% 0 50%)",
+            opacity: 1
+          }}
+          animate={
+            isInView
+              ? { clipPath: "inset(0 0% 0 0%)", opacity: 1 }
+              : { clipPath: "inset(0 40% 0 40%)", opacity: 1 }
+          }
           transition={{
-            duration: 3,
+            duration: 4,
             ease: [0.22, 1, 0.36, 1],
           }}
-          style={{ transformOrigin: "center" }}
           className="relative w-full aspect-video max-h-180 overflow-hidden"
         >
           <Image

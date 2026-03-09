@@ -12,7 +12,7 @@ export default function Hero() {
           alt="Hero Background"
           fill
           priority
-          className="object-cover lg:object-fill grayscale"
+          className="object-cover lg:object-contain grayscale"
         />
       </div>
       {/* Dark Overlay */}
