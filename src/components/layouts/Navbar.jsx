@@ -7,24 +7,39 @@ import LocalInfo from "@/components/ui/localInfo";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const routeBgColor = {
-  '/about': 'bg-background',
-  '/works': 'bg-background'
+const routeColor = {
+  '/about': {
+    bg: 'bg-background backdrop-blur-xl',
+    text: 'text-foreground',
+    logo: 'white'
+  },
+  '/works': {
+    bg: 'bg-background backdrop-blur-xl',
+    text: 'text-foreground',
+    logo: 'white'
+  },
 };
 
-const routeTextColor = {
-  '/about': 'text-foreground',
-  '/works': 'text-foreground'
-}
+const dynamicRoutes = [
+  {
+    match: "/works/detail",
+    bg: "bg-transparent",
+    text: "text-white",
+    logo: "white"
+  },
+];
 
 export default function Navbar() {
   const pathName = usePathname();
-  const bgColor = routeBgColor[pathName] || 'bg-foreground';
-  const textColor = routeTextColor[pathName] || 'text-background';
-  const images = bgColor === 'bg-foreground' ? '/images/CompanyLogoWhite.png' : '/images/CompanyLogoBlack.png'
+  const dynamicRoute = dynamicRoutes.find((route) =>
+    pathName.startsWith(route.match)
+  );
+  const bgColor = dynamicRoute?.bg || routeColor[pathName]?.bg || 'bg-foreground';
+  const textColor = dynamicRoute?.text || routeColor[pathName]?.text || 'text-background';
+  const images = routeColor[pathName]?.logo === 'white' ? '/images/CompanyLogoBlack.png' : '/images/CompanyLogoWhite.png';
 
   return (
-    <header className={`top-0 left-0 right-0 ${bgColor} backdrop-blur-xl`}>
+    <header className={`absolute top-0 left-0 right-0 z-50 ${bgColor}`}>
       <div className="w-full flex items-center justify-between px-6 md:px-10 h-20">
         <div className="flex items-center text-base">
           <div>

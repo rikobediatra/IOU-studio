@@ -2,16 +2,17 @@
 
 import CardWorks from "@/components/ui/cardWorks";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CaretRight } from "phosphor-react";
 import { useState } from "react";
 
 export default function MainWorks({ listWorks }) {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const router = useRouter();
 
   return (
     <section
       id="works-pages"
-      className="min-h-[calc(100dvh-5rem)] w-full"
+      className="min-h-dvh w-full"
     >
       {/* BREADCRUMBS */}
       <div className="pt-36 pb-11.25">
@@ -31,11 +32,10 @@ export default function MainWorks({ listWorks }) {
           return (
             <div
               key={work.id}
-              onMouseEnter={() => setActiveIndex(index)}
+              onClick={() => router.push(`/works/detail/${work.id}`)}
             >
               <CardWorks
                 work={work}
-                active={index === activeIndex}
               />
             </div>
           );
