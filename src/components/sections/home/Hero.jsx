@@ -4,7 +4,7 @@ import { ArrowDown } from "phosphor-react"
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(100dvh-5rem)] w-full bg-foreground text-primary-foreground">
+    <section className="relative h-dvh w-full bg-foreground text-primary-foreground">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image

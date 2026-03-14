@@ -25,7 +25,7 @@ export default function Summarize({ detailWork }) {
   };
 
   return (
-    <section className="px-10 py-30 border-2 border-red-500">
+    <section className="px-10 py-30">
       <h2 className="text-[2.5rem]">{detailWork.subTitle}</h2>
       <div className="my-10 flex flex-row flex-wrap gap-20">
         <div>

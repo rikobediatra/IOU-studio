@@ -9,7 +9,7 @@ export default function Introduction() {
   return (
     <section
       id="about"
-      className="min-h-[calc(100dvh-5rem)] w-full"
+      className="min-h-dvh w-full"
     >
       {/* BREADCRUMBS */}
       <div className="pt-36 pb-11.25 border-b-2 border-[#BCBFC8]">
@@ -32,6 +32,7 @@ export default function Introduction() {
           src="/images/About.png"
           alt="about IOU Studio"
           fill
+          unoptimized
           sizes="(max-width: 1024px) 100vw, 672px"
           className="object-cover"
         />

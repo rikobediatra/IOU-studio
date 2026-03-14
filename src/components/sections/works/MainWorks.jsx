@@ -12,7 +12,7 @@ export default function MainWorks({ listWorks }) {
   return (
     <section
       id="works-pages"
-      className="min-h-[calc(100dvh-5rem)] w-full"
+      className="min-h-dvh w-full"
     >
       {/* BREADCRUMBS */}
       <div className="pt-36 pb-11.25">
