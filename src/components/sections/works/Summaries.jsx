@@ -1,0 +1,52 @@
+import _ from "lodash";
+import { listService } from "@/utils/enums";
+
+export default function Summarize({ detailWork }) {
+  const listServices = () => {
+    const services = _.get(detailWork, "services", []);
+    if (!services || services.length <= 0) {
+      return null;
+    }
+
+    return services.map((id) => {
+      return (
+        <span
+          key={id}
+          className="uppercase px-4 py-1.5 text-xs font-light border border-foreground rounded-fullborder rounded-full cursor-pointer"
+        >
+          {listService[id]}
+        </span>
+      );
+    });
+  };
+
+  return (
+    <section className="px-10 py-30 border-2 border-red-500">
+      <h2 className="text-[2.5rem]">{detailWork.subTitle}</h2>
+      <div className="my-10 flex flex-row flex-wrap gap-20">
+        <div>
+          <h4 className="mb-6">Service</h4>
+          <div className="flex flex-wrap gap-2">{listServices()}</div>
+        </div>
+
+        {/* CLIENT */}
+        <div>
+          <h4 className="mb-6">CLIENT</h4>
+          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.client}</p>
+        </div>
+
+        {/* TIMELINE */}
+        <div>
+          <h4 className="mb-6">TIMELINE</h4>
+          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline} YEARS</p>
+        </div>
+
+        {/* YEAR */}
+        <div>
+          <h4 className="mb-6">YEAR</h4>
+          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.year}</p>
+        </div>
+      </div>
+    </section>
+  );
+}

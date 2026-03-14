@@ -17,9 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={hanken.variable}>
-      <body
-        className="min-h-screen bg-background font-sans antialiased"
-      >
+      <body className="min-h-screen bg-background font-sans antialiased">
         <Navbar />
         {children}
         <Footer />
