@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 
 export default async function Detail({ params }) {
   const { slug } = await params;
-  const basedURL = process.env.NEXT_PUBLIC_URL;
+  const basedURL = process.env.NEXT_PUBLIC_API_URL;
 
   const result = await getDataWorksById(
     `${basedURL}api/works?id=${slug}`,
