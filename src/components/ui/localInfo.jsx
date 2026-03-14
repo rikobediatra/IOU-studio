@@ -8,7 +8,7 @@ export default function LocalInfo({ textColor, bgColor }) {
   const [location, setLocation] = useState("");
   const [gmt, setGmt] = useState("");
   const squareColor = bgColor === 'bg-foreground' ? '#EBEBEB' : '#181818';
-  console.log()
+
   useEffect(() => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const locale = navigator.language;

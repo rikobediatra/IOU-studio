@@ -12,8 +12,12 @@ export default function Summarize({ detailWork }) {
       return (
         <span
           key={id}
-          className="uppercase px-4 py-1.5 text-xs font-light border border-foreground rounded-fullborder rounded-full cursor-pointer"
-        >
+          className="
+            uppercase px-4 py-1.5 text-xs font-light 
+            border border-foreground rounded-fullborder rounded-full cursor-pointer
+            hover:bg-foreground hover:text-background transition-all duration-300 ease-out
+            hover:-translate-y-0.5
+        ">
           {listService[id]}
         </span>
       );

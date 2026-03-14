@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function CardWorks({ work, active }) {
+export default function CardWorks({ work }) {
   return (
     <div className="group cursor-pointer">
       {/* IMAGE */}
@@ -35,8 +35,8 @@ export default function CardWorks({ work, active }) {
           lg:group-hover:opacity-100
         "
       >
-        <p>{work.id}</p>
         <p>{work.title}</p>
+        <p>{work.projectName}</p>
       </div>
 
     </div>

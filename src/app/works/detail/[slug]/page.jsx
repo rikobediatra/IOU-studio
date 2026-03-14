@@ -3,6 +3,7 @@ import DetailWorks from "@/components/sections/works/DetailWorks";
 import Summarize from "@/components/sections/works/Summaries";
 import WorksDescription from "@/components/sections/works/WorksDescription";
 import getDataWorksById from "@/services/WorksService";
+import { notFound } from "next/navigation";
 
 export default async function Detail({ params }) {
   const { slug } = await params;
@@ -12,19 +13,27 @@ export default async function Detail({ params }) {
   );
   const detailWork = _.get(result, "data", null);
 
-  if (!detailWork) {
-    return <div>Data not found</div>;
+  if (!detailWork || detailWork.length <= 0) {
+    notFound();
   }
 
   return (
     <main>
       <DetailWorks detailWork={detailWork} />
       <Summarize detailWork={detailWork} />
-
-      <WorksDescription section="discover" detail={detailWork.discover} />
-      <WorksDescription section="define" detail={detailWork.define} />
-      <WorksDescription section="design" detail={detailWork.design} />
-      <WorksDescription section="deliver" detail={detailWork.deliver} />
+      {
+        ["discover", "define", "design", "deliver"].map((section) => {
+        const detail = detailWork?.[section];
+        if (!detail || !Object.keys(detail).length) return null;
+        return (
+          <WorksDescription
+            key={section}
+            section={section}
+            detail={detail}
+          />
+        );
+      })
+      }
     </main>
   );
 }
