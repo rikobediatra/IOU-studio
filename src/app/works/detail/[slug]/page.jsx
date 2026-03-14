@@ -7,9 +7,10 @@ import { notFound } from "next/navigation";
 
 export default async function Detail({ params }) {
   const { slug } = await params;
+  const basedURL = process.env.NEXT_PUBLIC_URL;
 
   const result = await getDataWorksById(
-    `http://localhost:3000/api/works?id=${slug}`,
+    `${basedURL}api/works?id=${slug}`,
   );
   const detailWork = _.get(result, "data", null);
 
