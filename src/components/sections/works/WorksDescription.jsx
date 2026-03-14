@@ -30,7 +30,7 @@ export default function WorksDescription({ section, detail }) {
       >
         {detail.paragraph}
       </h4>
-      <p className="border-l border-[#BCBFC8] pl-2.5 md:max-w-80">
+      <p className="border-l border-[#BCBFC8] pl-2.5 md:max-w-xl">
         {detail.subParagraph}
       </p>
     </section>

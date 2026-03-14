@@ -6,21 +6,22 @@ import { ArrowDown, CaretRight } from "phosphor-react";
 
 export default function DetailWorks({ detailWork }) {
   return (
-    <section className="relative h-[calc(100dvh-5rem)] bg-foreground">
+    <section className="relative h-dvh bg-foreground">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/HeroBackground.png"
+          src={detailWork.images}
           alt="Hero Background"
           fill
           priority
-          className="object-cover lg:object-contain grayscale"
+          unoptimized
+          className="object-cover"
         />
       </div>
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-foreground/70 text-background">
+      <div className="absolute inset-0 text-background bg-[#181818]/40">
         {/* CONTENT */}
-        <div className="relative z-10 flex h-full flex-col justify-end px-6 md:px-10 pb-10">
+        <div className="relative z-10 flex h-full flex-col justify-end px-6 md:px-10 pb-10 pt-24">
           <div className="flex flex-row items-center gap-10">
             <h1>
               {detailWork.title}
