@@ -4,21 +4,21 @@ export default function worksPages() {
   const listOfWorks = [
     {
       id: "p001",
-      title: "p-001 velo",
+      title: "p-001",
       projectName: "PROJECT NAME",
-      image: "/images/works/dummyWorks.png",
+      image: "/images/works/detail/1/hero.png",
     },
     {
       id: "p002",
-      title: "p-002 velo",
-      projectName: "PROJECT NAME",
-      image: "/images/works/dummyWorks.png",
+      title: "p-002",
+      projectName: "NIKE BLUENO",
+      image: "/images/works/detail/2/hero.png",
     },
     {
       id: "p003",
-      title: "p-002 velo",
-      projectName: "PROJECT NAME",
-      image: "/images/works/dummyWorks.png",
+      title: "p-002",
+      projectName: "ACQUO",
+      image: "/images/works/detail/3/hero.png",
     }
   ]
 

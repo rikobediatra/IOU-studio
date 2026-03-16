@@ -4,7 +4,6 @@ import CardWorks from "@/components/ui/cardWorks";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CaretRight } from "phosphor-react";
-import { useState } from "react";
 
 export default function MainWorks({ listWorks }) {
   const router = useRouter();

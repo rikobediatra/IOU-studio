@@ -9,7 +9,7 @@ export const data = [
     client: "Personal Project",
     timeline: 2,
     year: 2023,
-    images: '/images/HeroBackground.png',
+    images: '/images/works/detail/1/hero.png',
     discover: {
       paragraph: '“Rengklek” is the problem for increasing risk the the problem modification of their motorbike',
       subParagraph: '“Rengklek” is the problem for increasing risk the the problem modification of their motorbike',

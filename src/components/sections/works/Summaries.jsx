@@ -25,30 +25,35 @@ export default function Summarize({ detailWork }) {
   };
 
   return (
-    <section className="px-10 py-30">
+    <section className="px-10 lg:px-0 py-30">
       <h2 className="text-[2.5rem]">{detailWork.subTitle}</h2>
-      <div className="my-10 flex flex-row flex-wrap gap-20">
+      <div className="my-10 flex flex-col lg:flex-row flex-wrap gap-20">
         <div>
           <h4 className="mb-6">Service</h4>
           <div className="flex flex-wrap gap-2">{listServices()}</div>
         </div>
 
         {/* CLIENT */}
-        <div>
-          <h4 className="mb-6">CLIENT</h4>
-          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.client}</p>
-        </div>
+        <div className="
+          flex flex-row 
+          gap-15 md:gap-20
+        ">
+          <div className="flex-none">
+            <h4 className="mb-6">CLIENT</h4>
+            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.client}</p>
+          </div>
 
-        {/* TIMELINE */}
-        <div>
-          <h4 className="mb-6">TIMELINE</h4>
-          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline} YEARS</p>
-        </div>
+          {/* TIMELINE */}
+          <div className="flex-none">
+            <h4 className="mb-6">TIMELINE</h4>
+            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline} YEARS</p>
+          </div>
 
-        {/* YEAR */}
-        <div>
-          <h4 className="mb-6">YEAR</h4>
-          <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.year}</p>
+          {/* YEAR */}
+          <div>
+            <h4 className="mb-6">YEAR</h4>
+            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.year}</p>
+          </div>
         </div>
       </div>
     </section>

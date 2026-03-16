@@ -8,7 +8,7 @@ export default function WorksDescription({ section, detail }) {
   return (
     <section 
       id={typeWorkDetail[section]} 
-      className="p-10 flex flex-col gap-10"
+      className="px-10 lg:px-0 py-10 flex flex-col gap-10"
     >
       <h3>
         {typeWorkDetail[section]}
