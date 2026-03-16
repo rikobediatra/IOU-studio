@@ -20,7 +20,7 @@ export default async function Detail({ params }) {
     <main>
       <DetailWorks detailWork={detailWork} />
       <div
-        className="border-3 border-red-500 max-w-240 mx-auto"
+        className="max-w-240 mx-auto"
       >
         <Summarize detailWork={detailWork} />
         {["discover", "define", "design", "deliver"].map((section) => {
