@@ -40,23 +40,18 @@ export default function HomePages() {
   const listProjects = [
     {
       projectId: "P-001",
-      projectName: "PROJECT NAME",
-      image: "/images/works.png",
+      projectName: "Velo",
+      image: "/images/works/detail/1/hero.png",
     },
     {
       projectId: "P-002",
-      projectName: "PROJECT NAME",
-      image: "/images/works.png",
+      projectName: "NIKE BLUENO",
+      image: "/images/works/detail/2/hero.png",
     },
     {
       projectId: "P-003",
-      projectName: "PROJECT NAME",
-      image: "/images/works.png",
-    },
-    {
-      projectId: "P-004",
-      projectName: "PROJECT NAME",
-      image: "/images/works.png",
+      projectName: "ACQUO",
+      image: "/images/works/detail/3/hero.png",
     },
   ];
 

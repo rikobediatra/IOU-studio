@@ -1,9 +1,11 @@
 "use client"
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { ArrowRight} from "phosphor-react";
 
 export default function Works({ listProjects }) {
+  const router = useRouter();
   return (
     <section 
       id="works"
@@ -18,7 +20,7 @@ export default function Works({ listProjects }) {
       </div>
 
       {/* CONTENT */}
-      <div className="grid grid-cols-1 lg:px-72 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:px-72 md:grid-cols-2 gap-4">
         {listProjects.map((project) => (
           <div key={project.projectId} className="group cursor-pointer text-background hover:text-foreground">
             <div className="relative overflow-hidden">
@@ -44,10 +46,13 @@ export default function Works({ listProjects }) {
 
       {/* FOOTER BUTTON */}
       <div className="my-10 flex justify-center">
-        <button className="
+        <button
+          className="
           border border-black rounded-full flex flex-row items-center gap-4.5 transition-all duration-300
           cursor-pointer hover:bg-black hover:text-white
-        ">
+          "
+          onClick={() => router.push('/works')}
+        >
           SEE OUR WORKS <span><ArrowRight width={14} height={14} /></span>
         </button>
       </div>

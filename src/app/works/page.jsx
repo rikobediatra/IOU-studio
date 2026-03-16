@@ -5,7 +5,7 @@ export default function worksPages() {
     {
       id: "p001",
       title: "p-001",
-      projectName: "PROJECT NAME",
+      projectName: "VELO",
       image: "/images/works/detail/1/hero.png",
     },
     {
