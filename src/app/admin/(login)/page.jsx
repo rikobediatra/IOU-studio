@@ -24,11 +24,12 @@ export default function LoginPage() {
       setLoading(true);
       const res = await login(username, password);
 
-      if(!res.ok) {
+      if(!res.success) {
         throw new Error(res.message);
       }
 
       setError('');
+      router.push('/admin/dashboard');
     } catch (error) {
       setError(error.message);
     } finally {

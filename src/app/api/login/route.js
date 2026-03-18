@@ -3,13 +3,12 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const { username, password } = await req.json();
+    const isCorrectUsername = username === process.env.ADMIN_USERNAME;
+    const isCorrectPassword = password === process.env.ADMIN_PASSWORD;
 
-    if (
-      username === process.env.ADMIN_USERNAME &&
-      password === process.env.ADMIN_PASSWORD
-    ) {
+    if (isCorrectUsername && isCorrectPassword) {
       const response = NextResponse.json({ success: true });
-      response.cookies.set("auth", "true", {
+      response.cookies.set("token", "user-token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         path: "/",
@@ -34,9 +33,9 @@ export async function POST(req) {
 export async function DELETE() {
   const response = NextResponse.json({ success: true });
 
-  response.cookies.set("auth", "", {
+  response.cookies.set("token", "", {
     path: "/",
-    maxAge: 0,
+    expires: new Date(0),
   });
 
   return response;
