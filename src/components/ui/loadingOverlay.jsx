@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function LoadingOverlay() {
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center bg-white">
       <div className="flex flex-col items-center gap-6">
 
         {/* Logo */}
