@@ -24,16 +24,16 @@ export default function LoginPage() {
       setLoading(true);
       const res = await login(username, password);
 
-      if(!res.success) {
+      if (!res.success) {
         throw new Error(res.message);
       }
 
-      setError('');
-      router.push('/admin/dashboard');
+      setError("");
+      router.push("/admin/dashboard");
     } catch (error) {
       setError(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -73,9 +73,14 @@ export default function LoginPage() {
                     type="text"
                     placeholder="Your username"
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full h-12.25 px-12 rounded-full border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-300"
+                    className={`
+                      peer w-full h-12.25 ${username ? 'px-6' : 'px-12'}
+                      placeholder-transparent sm:placeholder-neutral-400 focus:px-6 peer-placeholder-shown:px-12 
+                      rounded-full border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-300 
+                      transition-all duration-200
+                    `}
                   />
-                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-foreground/30">
+                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-foreground/30 pointer-events-none transition-all duration-200 opacity-100 peer-focus:opacity-0 peer-[:not(:placeholder-shown)]:opacity-0">
                     <FaRegUser />
                   </span>
                 </div>
@@ -83,17 +88,21 @@ export default function LoginPage() {
                 {/* PASSWORD */}
                 <div className="relative">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Your password"
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-12.25 px-12 rounded-full border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-300"
+                    className={`
+                      peer w-full h-12.25 ${password ? 'px-6' : 'px-12'}
+                      placeholder-transparent sm:placeholder-neutral-400 focus:px-6 peer-placeholder-shown:px-12 
+                      rounded-full border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-300 
+                      transition-all duration-200
+                    `}
                   />
-
-                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-neutral-400">
+                  <span className="absolute left-6 top-1/2 -translate-y-1/2 text-foreground/30 pointer-events-none transition-all duration-200 opacity-100 peer-focus:opacity-0 peer-[:not(:placeholder-shown)]:opacity-0">
                     <FiLock />
                   </span>
 
-                  <span 
+                  <span
                     className="absolute right-6 top-1/2 -translate-y-1/2 text-neutral-400 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   >
@@ -103,12 +112,11 @@ export default function LoginPage() {
               </div>
 
               {/* MESSAGE ERROR */}
-              {
-                error &&
+              {error && (
                 <p className="normal-case font-black bg-red-200 text-red-400 p-2 border-l-8 border-foreground/20">
                   {error}
                 </p>
-              }
+              )}
 
               {/* BUTTON */}
               <button
