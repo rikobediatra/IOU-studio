@@ -8,10 +8,12 @@ import { IoBriefcaseOutline } from "react-icons/io5";
 import { useLoading } from "@/context/LoadingContext";
 import { logout } from "@/services/LoginService";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Sidebar({ children }) {
+  const [isCollapse, setIsCollapse] = useState(false);
   const { setLoading } = useLoading();
-    const router = useRouter();
+  const router = useRouter();
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -19,14 +21,14 @@ export default function Sidebar({ children }) {
     try {
       setLoading(true);
       const res = await logout();
-      if(!res.success) {
+      if (!res.success) {
         throw new Error(res.message);
       }
-      router.push('/admin');
+      router.push("/admin");
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -38,10 +40,13 @@ export default function Sidebar({ children }) {
       {/* SIDEBAR */}
       <aside
         id="sidebar"
-        className="w-68 min-h-230 p-4 flex flex-col justify-between"
+        className={`${isCollapse ? "w-25.5" : "w-68"} min-h-230 p-4 flex flex-col justify-between`}
       >
         <div>
-          <div className="flex items-center justify-between mb-7.5">
+          <div className={`
+            flex items-center mb-7.5
+            ${isCollapse ? 'justify-center' : 'justify-between'}
+          `}>
             <Image
               alt="logo iou studio"
               src={logo}
@@ -49,27 +54,43 @@ export default function Sidebar({ children }) {
               width="auto"
               unoptimized
             />
-            <ArrowLineLeft size={14} />
+            <ArrowLineLeft
+              className={`cursor-pointer ${isCollapse ? "hidden" : "block"}`}
+              onClick={() => setIsCollapse(!isCollapse)}
+              size={14}
+            />
           </div>
           <menu>
-            <div className="bg-white border border-secondary px-3 py-3.25 rounded-full flex items-center gap-2 text-sm font-medium">
+            <div
+              className={`bg-white border border-secondary px-3 py-3.25 rounded-full 
+                flex items-center gap-2 text-sm font-medium 
+                ${isCollapse ? "justify-center" : "" }
+              `}
+            >
               <IoBriefcaseOutline />
-              <span>Portfolio</span>
+              <span className={`${isCollapse ? "hidden" : "block"}`}>
+                Portfolio
+              </span>
             </div>
           </menu>
         </div>
 
         {/* Logout button */}
         <button
-          className="
+          className={`
             group bg-[#F5F5F5] hover:bg-white rounded-full text-sm font-normal normal-case px-3 py-3.25 
             flex items-center gap-2 w-full cursor-pointer hover:font-medium
-          "
+            ${isCollapse ? "justify-center" : "" }
+          `}
           onClick={handleLogout}
         >
-          <span className="opacity-60 group-hover:opacity-100">
-            <SignOut size={14}/>
-          </span>Logout
+          <SignOut 
+            className="opacity-60 group-hover:opacity-100"
+            size={14}
+          />
+          <span className={`${isCollapse ? "hidden" : "block"}`}>
+            Logout
+          </span>
         </button>
       </aside>
       {/* NAVBAR */}
@@ -87,7 +108,7 @@ export default function Sidebar({ children }) {
             </p>
           </div>
           <div className="flex items-center gap-6 bg-white pl-4 pr-6 py-2.5 rounded-full shadow-sm">
-            <Image 
+            <Image
               alt="user"
               src={avatar}
               height={32}
