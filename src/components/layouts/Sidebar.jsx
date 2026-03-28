@@ -62,12 +62,14 @@ export default function Sidebar({ children }) {
         {/* Logout button */}
         <button
           className="
-            text-sm font-normal normal-case px-3 py-3.25 flex items-center gap-2 w-full
-            cursor-pointer hover:font-medium
+            group bg-[#F5F5F5] hover:bg-white rounded-full text-sm font-normal normal-case px-3 py-3.25 
+            flex items-center gap-2 w-full cursor-pointer hover:font-medium
           "
           onClick={handleLogout}
         >
-          <span><SignOut size={14}/></span>Logout
+          <span className="opacity-60 group-hover:opacity-100">
+            <SignOut size={14}/>
+          </span>Logout
         </button>
       </aside>
       {/* NAVBAR */}

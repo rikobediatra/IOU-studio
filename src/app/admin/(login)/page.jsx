@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { login } from "@/services/LoginService";
 import { useLoading } from "@/context/LoadingContext";
+import { CustomButton } from "@/components/ui/customButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -119,12 +120,12 @@ export default function LoginPage() {
               )}
 
               {/* BUTTON */}
-              <button
+              <CustomButton
                 type="submit"
-                className="w-full h-12.25 rounded-full bg-primary text-white font-medium hover:bg-teal-800 transition cursor-pointer"
+                className="uppercase w-full h-12.25 rounded-full bg-primary text-white font-medium justify-center hover:bg-[#416062] hover:text-white/60"
               >
                 Sign In
-              </button>
+              </CustomButton>
             </form>
 
             {/* FOOTER */}

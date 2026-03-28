@@ -8,19 +8,28 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select";
+import { CustomButton } from "@/components/ui/customButton";
 import { FaPlus } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
-import folder from "../../../assets/icons/folder.svg"
+import folder from "../../../assets/icons/folder.svg";
 
 export default function Dashboard() {
   const [limit, setLimit] = useState("10");
 
+  const buttonAddProject = () => {
+    return (
+      <CustomButton className="bg-primary text-white py-3 hover:bg-[#416062] hover:text-white/60">
+        <span>
+          <FaPlus />
+        </span>
+        Add Project
+      </CustomButton>
+    );
+  };
+
   return (
-    <main
-      id="dashboard"
-      className="h-[calc(100dvh-90px)] flex flex-col pt-4"
-    >
+    <main id="dashboard" className="h-[calc(100dvh-90px)] flex flex-col pt-4">
       {/* CARD */}
       <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
         {/* Header */}
@@ -28,10 +37,10 @@ export default function Dashboard() {
           <p className="font-medium">Portfolio</p>
           <div className="flex items-center gap-4">
             <Select value={limit} onValueChange={setLimit}>
-              <SelectTrigger className="h-10.5">
+              <SelectTrigger className="min-h-11">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent position="popper">
                 <SelectGroup>
                   {[10, 15, 20, 25].map((item) => (
                     <SelectItem key={item} value={String(item)}>
@@ -41,17 +50,13 @@ export default function Dashboard() {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <button
-              className="bg-primary rounded-full text-white normal-case max-h-10.5 py-2 flex items-center gap-2 cursor-pointer hover:bg-teal-800 transition"
-            >
-              <span><FaPlus /></span>Add Project
-            </button>
+            {buttonAddProject()}
           </div>
         </section>
 
         {/* MAIN CONTAIN */}
         <section className="border-t grow rounded-t-[24px] flex flex-1 items-center justify-center flex-col text-center gap-6">
-          <Image 
+          <Image
             alt="folder"
             src={folder}
             width={120}
@@ -62,11 +67,7 @@ export default function Dashboard() {
             <p className="text-lg font-medium">There’s no project to be seen</p>
             <p className="text-sm font-normal">Add new project now!</p>
           </div>
-          <button
-              className="bg-primary rounded-full text-white normal-case max-h-10.5 py-2 flex items-center gap-2 cursor-pointer hover:bg-teal-800 transition"
-            >
-              <span><FaPlus /></span>Add Project
-            </button>
+          {buttonAddProject()}
         </section>
       </div>
     </main>
