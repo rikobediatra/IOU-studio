@@ -114,7 +114,7 @@ export default function LoginPage() {
 
               {/* MESSAGE ERROR */}
               {error && (
-                <p className="normal-case font-black bg-red-200 text-red-400 p-2 border-l-8 border-foreground/20">
+                <p className="normal-case font-normal bg-[#D10000]/10 text-[#D10000] p-2 border-l-3 border-[#D10000] rounded-sm">
                   {error}
                 </p>
               )}

@@ -1,10 +1,10 @@
 "use client";
 
 import logo from "../../assets/icons/logo.svg";
-import avatar from "../../assets/icons/avatar.svg";
 import Image from "next/image";
 import { ArrowLineLeft, ArrowLineRight, SignOut } from "phosphor-react";
 import { IoBriefcaseOutline } from "react-icons/io5";
+import { CiUser } from "react-icons/ci";
 import { useLoading } from "@/context/LoadingContext";
 import { logout } from "@/services/LoginService";
 import { useRouter } from "next/navigation";
@@ -112,8 +112,7 @@ export default function Sidebar({ children }) {
             size={14}
           />
           <span className={`
-            ${isCollapse ? "hidden" : "block"} 
-            overflow-hidden transition-all duration-300
+            ${isCollapse ? "hidden" : "block"}
           `}>
             Logout
           </span>
@@ -134,18 +133,12 @@ export default function Sidebar({ children }) {
             </p>
           </div>
           <div className="flex items-center gap-6 bg-white pl-4 pr-6 py-2.5 rounded-full shadow-sm">
-            <Image
-              alt="user"
-              src={avatar}
-              height={32}
-              width="auto"
-              unoptimized
-              className="rounded-2xl"
-            />
-            <div>
-              <p className="font-normal">Kevin Octa</p>
-              <p className="text-[0.625rem]">Admin</p>
+            <div className="w-8 h-8 rounded-2xl border border-[#DDDDDD] flex items-center justify-center">
+              <CiUser
+                size={14}
+              />
             </div>
+            <p className="normal-case font-normal">Admin</p>
           </div>
         </nav>
         {children}

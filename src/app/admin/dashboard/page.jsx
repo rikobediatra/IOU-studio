@@ -32,7 +32,7 @@ export default function Dashboard() {
       <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
         {/* Header */}
         <section className="px-6 py-4 flex items-center justify-between">
-          <p className="font-medium">Portfolio</p>
+          <p className="font-medium normal-case">Portfolio</p>
           <div className="flex items-center gap-4">
             <Select value={limit} onValueChange={setLimit}>
               <SelectTrigger className="min-h-11">
@@ -62,8 +62,8 @@ export default function Dashboard() {
             unoptimized
           />
           <div className="normal-case">
-            <p className="text-lg font-medium">There’s no project to be seen</p>
-            <p className="text-sm font-normal">Add new project now!</p>
+            <p className="text-lg font-medium normal-case">There’s no project to be seen</p>
+            <p className="text-sm font-normal normal-case">Add new project now!</p>
           </div>
           { buttonAddProject }
         </section>
