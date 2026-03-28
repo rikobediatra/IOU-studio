@@ -17,16 +17,14 @@ import folder from "../../../assets/icons/folder.svg";
 export default function Dashboard() {
   const [limit, setLimit] = useState("10");
 
-  const buttonAddProject = () => {
-    return (
-      <CustomButton className="bg-primary text-white py-3 hover:bg-[#416062] hover:text-white/60">
-        <span>
-          <FaPlus />
-        </span>
-        Add Project
-      </CustomButton>
-    );
-  };
+  const buttonAddProject = (
+    <CustomButton className="bg-primary text-white py-3 hover:bg-[#416062] hover:text-white/60">
+      <span>
+        <FaPlus />
+      </span>
+      Add Project
+    </CustomButton>
+  );
 
   return (
     <main id="dashboard" className="h-[calc(100dvh-90px)] flex flex-col pt-4">
@@ -50,7 +48,7 @@ export default function Dashboard() {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {buttonAddProject()}
+            { buttonAddProject }
           </div>
         </section>
 
@@ -67,7 +65,7 @@ export default function Dashboard() {
             <p className="text-lg font-medium">There’s no project to be seen</p>
             <p className="text-sm font-normal">Add new project now!</p>
           </div>
-          {buttonAddProject()}
+          { buttonAddProject }
         </section>
       </div>
     </main>

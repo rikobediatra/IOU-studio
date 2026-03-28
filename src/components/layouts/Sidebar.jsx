@@ -3,7 +3,7 @@
 import logo from "../../assets/icons/logo.svg";
 import avatar from "../../assets/icons/avatar.svg";
 import Image from "next/image";
-import { ArrowLineLeft, SignOut } from "phosphor-react";
+import { ArrowLineLeft, ArrowLineRight, SignOut } from "phosphor-react";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { useLoading } from "@/context/LoadingContext";
 import { logout } from "@/services/LoginService";
@@ -32,6 +32,26 @@ export default function Sidebar({ children }) {
     }
   };
 
+  const iconToggelSidebar = () => {
+    if (isCollapse) {
+      return (
+        <ArrowLineRight
+          className="cursor-pointer"
+          onClick={() => setIsCollapse(!isCollapse)}
+          size={14}
+        />
+      );
+    }
+
+    return (
+      <ArrowLineLeft
+        className="cursor-pointer"
+        onClick={() => setIsCollapse(!isCollapse)}
+        size={14}
+      />
+    );
+  }
+
   return (
     <div
       className="min-h-screen flex
@@ -40,12 +60,16 @@ export default function Sidebar({ children }) {
       {/* SIDEBAR */}
       <aside
         id="sidebar"
-        className={`${isCollapse ? "w-25.5" : "w-68"} min-h-230 p-4 flex flex-col justify-between`}
+        className={`
+          ${isCollapse ? "w-25.5" : "w-68"} 
+          sticky top-0 h-screen p-4 
+          flex flex-col justify-between transition-all duration-300 ease-in-out
+        `}
       >
         <div>
           <div className={`
-            flex items-center mb-7.5
-            ${isCollapse ? 'justify-center' : 'justify-between'}
+            flex items-center mb-7.5 justify-between
+            ${isCollapse ? 'gap-2.5' : ''}
           `}>
             <Image
               alt="logo iou studio"
@@ -54,11 +78,7 @@ export default function Sidebar({ children }) {
               width="auto"
               unoptimized
             />
-            <ArrowLineLeft
-              className={`cursor-pointer ${isCollapse ? "hidden" : "block"}`}
-              onClick={() => setIsCollapse(!isCollapse)}
-              size={14}
-            />
+            { iconToggelSidebar() }
           </div>
           <menu>
             <div
@@ -68,7 +88,10 @@ export default function Sidebar({ children }) {
               `}
             >
               <IoBriefcaseOutline />
-              <span className={`${isCollapse ? "hidden" : "block"}`}>
+              <span className={`
+                ${isCollapse ? "hidden" : "block"} 
+                overflow-hidden transition-all duration-300
+              `}>
                 Portfolio
               </span>
             </div>
@@ -85,19 +108,22 @@ export default function Sidebar({ children }) {
           onClick={handleLogout}
         >
           <SignOut 
-            className="opacity-60 group-hover:opacity-100"
+            className="opacity-60 group-hover:opacity-100 "
             size={14}
           />
-          <span className={`${isCollapse ? "hidden" : "block"}`}>
+          <span className={`
+            ${isCollapse ? "hidden" : "block"} 
+            overflow-hidden transition-all duration-300
+          `}>
             Logout
           </span>
         </button>
       </aside>
       {/* NAVBAR */}
-      <main className="p-4">
+      <main className="p-4 flex-1 flex flex-col">
         <nav
           id="navbar"
-          className="w-[calc(100dvw-272px)] min-h-13.25 flex justify-between"
+          className="min-h-13.25 flex justify-between"
         >
           <div>
             <h4 className="font-medium text-lg normal-case">
