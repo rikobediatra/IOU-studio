@@ -6,9 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-hanken: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -101,7 +101,11 @@ html {
   * {
     @apply border-border outline-ring/50;
   }
+  :root {
+    --font-hanken-grotesk: var(--font-hanken-grotesk);
+  }
   body {
+    font-family: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
     @apply bg-background text-foreground;
   }
   h1 {

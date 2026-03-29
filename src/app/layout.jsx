@@ -3,7 +3,7 @@ import "./globals.css";
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-hanken-grotesk",
   display: "swap",
 });
 
@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={hanken.variable}>
-      <body className="min-h-screen bg-background font-sans">
+      <body className="min-h-screen bg-background font-hanken">
         {children}
       </body>
     </html>
