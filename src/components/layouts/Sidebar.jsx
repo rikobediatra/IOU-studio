@@ -77,15 +77,17 @@ export default function Sidebar({ children }) {
               height={24}
               width="auto"
               unoptimized
+              onClick={() => router.push("/admin")}
             />
             { iconToggelSidebar() }
           </div>
           <menu>
             <div
               className={`bg-white border border-secondary px-3 py-3.25 rounded-full 
-                flex items-center gap-2 text-sm font-medium 
+                flex items-center gap-2 text-sm font-medium cursor-pointer
                 ${isCollapse ? "justify-center" : "" }
               `}
+              onClick={() => router.push("/admin")}
             >
               <IoBriefcaseOutline />
               <span className={`
