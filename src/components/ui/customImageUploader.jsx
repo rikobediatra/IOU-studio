@@ -6,6 +6,7 @@ import { Upload, Image as ImageIcon, Trash2 } from "lucide-react";
 
 export default function CustomImageUploader() {
   const inputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -34,6 +35,23 @@ export default function CustomImageUploader() {
     setPreview(null);
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    handleFile(file);
+  };
+
+  // ACTIVE STATE BUTTON UPLOAD
+  const activeState = () => {
+    if (file) {
+      return "bg-[#496C6F] text-white opacity-100";
+    }
+    return "";
+  };
+
   return (
     <div className="w-full space-y-4 p-6 border border-[#DDDDDD] rounded-[24px]">
       {/* DROP AREA */}
@@ -48,7 +66,9 @@ export default function CustomImageUploader() {
         {!preview ? (
           <>
             <ImageIcon className="w-10 h-10 opacity-60" />
-            <p className="text-lg font-normal mt-6 normal-case">Import Image File</p>
+            <p className="text-lg font-normal mt-6 normal-case">
+              Import Image File
+            </p>
             <p className="text-base font-normal normal-case opacity-60">
               Drop file or click here to choose file.
             </p>
@@ -56,7 +76,13 @@ export default function CustomImageUploader() {
         ) : (
           <>
             <div className="relative w-52 h-36 rounded-md overflow-hidden shadow-md">
-              <Image src={preview} alt="Preview" fill className="object-cover" unoptimized/>
+              <Image
+                src={preview}
+                alt="Preview"
+                fill
+                className="object-cover"
+                unoptimized
+              />
             </div>
             <p className="text-base font-normal normal-case opacity-60">
               Click here to change file.
@@ -80,23 +106,33 @@ export default function CustomImageUploader() {
         <button
           onClick={handleRemove}
           disabled={!file}
-          className="w-full h-10.5 normal-case px-6 py-3
-          rounded-full border border-[#496C6F]
+          className="w-full normal-case px-6 py-3
+          rounded-full
           text-sm opacity-40 cursor-pointer
-        hover:text-red-800 hover:border-red-800 hover:opacity-100 transition disabled:opacity-30 disabled:border-none"
+        hover:text-red-800 hover:border hover:border-red-800 hover:opacity-100 transition 
+          disabled:opacity-30 disabled:hover:border-none"
         >
           Delete Image
         </button>
 
         {/* UPLOAD */}
         <button
-          className="w-full h-10.5 normal-case px-6 py-3
+          onClick={handleButtonClick}
+          className={`
+          ${activeState()}
+          w-full normal-case px-6 py-3
           rounded-full border border-[#496C6F]
           text-sm opacity-40 cursor-pointer
-        hover:bg-[#496C6F] hover:text-white hover:opacity-100 transition"
+        hover:bg-[#496C6F] hover:text-white hover:opacity-100 transition`}
         >
           Upload Image
         </button>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          style={{ display: "none" }} // Hides the default browser input
+        />
       </div>
     </div>
   );
