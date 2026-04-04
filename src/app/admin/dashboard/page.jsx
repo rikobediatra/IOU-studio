@@ -13,12 +13,18 @@ import { FaPlus } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
 import folder from "../../../assets/icons/folder.svg";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const [limit, setLimit] = useState("10");
+  const router = useRouter();
+
 
   const buttonAddProject = (
-    <CustomButton className="bg-primary text-white py-3 hover:bg-[#416062] hover:text-white/60">
+    <CustomButton 
+      className="bg-primary text-white py-3 hover:bg-[#416062] hover:text-white/60"
+      onClick={() => router.push('/admin/project')}
+    >
       <span>
         <FaPlus />
       </span>
@@ -52,7 +58,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* MAIN CONTAIN */}
+        {/* MAIN CONTENT */}
         <section className="border-t grow rounded-t-[24px] flex flex-1 items-center justify-center flex-col text-center gap-6">
           <Image
             alt="folder"
