@@ -47,7 +47,7 @@ export default function CustomImageUploader() {
   // ACTIVE STATE BUTTON UPLOAD
   const activeState = () => {
     if (file) {
-      return "bg-[#496C6F] text-white opacity-100";
+      return "bg-[#496C6F] text-white opacity-100 hover:font-medium";
     }
     return "";
   };
@@ -129,6 +129,7 @@ export default function CustomImageUploader() {
         </button>
         <input
           type="file"
+          accept="image/*"
           ref={fileInputRef}
           onChange={handleFileChange}
           style={{ display: "none" }} // Hides the default browser input
