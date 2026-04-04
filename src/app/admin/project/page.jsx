@@ -6,6 +6,8 @@ import Design from "@/components/sections/project/Design";
 import Deliver from "@/components/sections/project/Deliver";
 import { CustomButton } from "@/components/ui/customButton";
 import { DeleteProjectModal } from "@/components/ui/deleteProjectModal";
+import { FaPlus } from "react-icons/fa";
+
 import { useState } from "react";
 
 export default function ProjectPage({}) {
@@ -58,10 +60,10 @@ export default function ProjectPage({}) {
               Delete Project
             </CustomButton>
             <CustomButton
-              className="w-full h-10.5 py-3 justify-center text-sm text-white bg-[#496C6F]
-              border hover:font-bold hover:border-[#1c2f31]"
+              className="group w-full h-10.5 py-3 justify-center text-sm text-white bg-[#496C6F]
+              border hover:font-bold hover:border-[#1c2f31] group-hover:opacity-100"
             >
-              Upload Project
+              <FaPlus size={14} className="group opacity-60"/> Upload Project
             </CustomButton>
           </div>
         </section>

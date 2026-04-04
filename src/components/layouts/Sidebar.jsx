@@ -131,7 +131,7 @@ export default function Sidebar({ children }) {
               Design Studio Dashboard
             </h4>
             <p className="font-normal text-sm normal-case">
-              Lorem Ipsum Dolor Sit Amet
+              Welcome back, let&apos;s have a great productive day!
             </p>
           </div>
           <div className="flex items-center gap-6 bg-white pl-4 pr-6 py-2.5 rounded-full shadow-sm">
