@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.13.6",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
@@ -18,6 +19,8 @@
     "framer-motion": "^12.34.3",
     "lodash": "^4.17.23",
     "lucide-react": "^1.7.0",
+    "mongodb": "^7.1.1",
+    "mongoose": "^9.4.1",
     "next": "16.1.6",
     "phosphor-react": "^1.4.1",
     "radix-ui": "^1.4.3",
