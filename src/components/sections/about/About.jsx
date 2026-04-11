@@ -37,7 +37,7 @@ export default function About() {
           </p>
           <button 
             className="flex flex-row gap-4.5 items-center border border-foreground bg-foreground text-background rounded-full w-56.75 cursor-pointer
-              hover:bg-background hover:text-foreground transition"
+              hover:bg-[#F5F5F5] hover:text-foreground transition"
             onClick={() => {
               const section = document.getElementById('footer')
               section?.scrollIntoView({ behavior: 'smooth'})

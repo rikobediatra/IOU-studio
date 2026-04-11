@@ -13,7 +13,7 @@ export default function CustomMultiSelect() {
   return (
     <>
       <MultiSelect
-        className="px-6 py-4.75 rounded-full text-[12px] font-light opacity-60 w-full"
+        className="px-6 py-4.75 h-17.25 rounded-full text-[12px] font-light w-full"
         options={options}
         onValueChange={(selected) => console.log(selected)}
         animationConfig={{

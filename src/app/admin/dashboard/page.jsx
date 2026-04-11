@@ -38,7 +38,7 @@ export default function Dashboard() {
       <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
         {/* Header */}
         <section className="px-6 py-4 flex items-center justify-between">
-          <p className="font-medium normal-case">Portfolio</p>
+          <p className="font-medium normal-case text-base">Portfolio</p>
           <div className="flex items-center gap-4">
             <Select value={limit} onValueChange={setLimit}>
               <SelectTrigger className="min-h-11">

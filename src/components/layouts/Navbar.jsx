@@ -9,12 +9,12 @@ import { usePathname } from "next/navigation";
 
 const routeColor = {
   '/about': {
-    bg: 'bg-background backdrop-blur-xl',
+    bg: 'bg-[#F5F5F5] backdrop-blur-xl',
     text: 'text-foreground',
     logo: 'white'
   },
   '/works': {
-    bg: 'bg-background backdrop-blur-xl',
+    bg: 'bg-[#F5F5F5] backdrop-blur-xl',
     text: 'text-foreground',
     logo: 'white'
   },

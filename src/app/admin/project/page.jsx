@@ -34,7 +34,7 @@ export default function ProjectPage({}) {
       <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
         {/* HEADER */}
         <section className="px-6 py-4 flex items-center justify-between">
-          <p className="font-medium normal-case">Portfolio</p>
+          <p className="font-medium normal-case text-base">Portfolio</p>
         </section>
 
         {/* MAIN CONTENT */}

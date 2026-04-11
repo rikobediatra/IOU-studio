@@ -124,7 +124,7 @@ export default function Sidebar({ children }) {
       <main className="p-4 flex-1 flex flex-col">
         <nav
           id="navbar"
-          className="min-h-13.25 flex justify-between"
+          className="min-h-13.25 flex justify-between items-center"
         >
           <div>
             <h4 className="font-medium text-lg normal-case">

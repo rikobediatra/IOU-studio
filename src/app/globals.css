@@ -53,7 +53,7 @@ html {
 :root {
   --radius: 0.75rem;
   /* Background System */
-  --background: oklch(0.92 0 0); /* EBEBEB */
+  --background: oklch(96.7% 0 0); /* F5F5F5 */
   --foreground: oklch(0.145 0 0); /* 181818 */
   --card: oklch(1 0 0); /* white */
   --card-foreground: oklch(0.145 0 0);

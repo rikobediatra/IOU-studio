@@ -22,7 +22,7 @@ export default function Process({ listService }) {
       </div>
       <div className="flex justify-center pt-10">
         <button 
-            className="flex flex-row gap-4.5 items-center border border-foreground bg-background text-foreground rounded-full cursor-pointer
+            className="flex flex-row gap-4.5 items-center border border-foreground bg-[#F5F5F5] text-foreground rounded-full cursor-pointer
               hover:bg-foreground hover:text-background transition"
           >
             SEE OUR WORKS <span><ArrowRight width={16} height={16} /></span>
