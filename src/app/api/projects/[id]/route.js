@@ -61,7 +61,7 @@ export async function PUT(req, context) {
 
     const body = await req.json();
     const updated = await Project.findByIdAndUpdate(id, body, {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     }).lean();
 

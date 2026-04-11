@@ -17,6 +17,8 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.34.3",
+    "jose": "^6.2.2",
+    "jsonwebtoken": "^9.0.3",
     "lodash": "^4.17.23",
     "lucide-react": "^1.7.0",
     "mongodb": "^7.1.1",
