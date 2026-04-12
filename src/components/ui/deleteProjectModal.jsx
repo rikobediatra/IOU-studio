@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { CustomButton } from "./customButton";
 
 export function DeleteProjectModal({ isOpen, onOpenChange, onConfirm }) {
-  const [confirmText, setConfirmText] = useState("");
+  const [confirmText, setConfirmText] = useState();
 
   const handleConfirm = (e) => {
     if (confirmText !== "delete") {
@@ -21,12 +21,11 @@ export function DeleteProjectModal({ isOpen, onOpenChange, onConfirm }) {
       return;
     }
     onConfirm();
-    setConfirmText("");
   };
 
   const closeModal = () => {
-    onOpenChange(false);
     setConfirmText("");
+    onOpenChange(false);
   };
 
   return (
@@ -91,6 +90,7 @@ export function DeleteProjectModal({ isOpen, onOpenChange, onConfirm }) {
               Cancel
             </CustomButton>
             <CustomButton
+              type='button'
               className="flex-1 justify-center bg-[#E92323] text-white
                 disabled:opacity-50 enabled:hover:font-bold transition-all
               "

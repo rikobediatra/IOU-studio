@@ -1,6 +1,6 @@
 import cloudinary from "./cloudinary";
 
-export const uploadToCloudinary = async (file, folder = "iou_studio") => {
+const uploadToCloudinary = async (file, folder = "iou_studio") => {
   const buffer = Buffer.from(await file.arrayBuffer());
 
   return new Promise((resolve, reject) => {
@@ -9,16 +9,19 @@ export const uploadToCloudinary = async (file, folder = "iou_studio") => {
         {
           folder: folder,
           resource_type: "image",
-          transformation: [
-            { quality: "auto" },
-            { fetch_format: "auto" },
-          ],
+          transformation: [{ quality: "auto" }, { fetch_format: "auto" }],
         },
         (error, result) => {
           if (error) return reject(error);
-          resolve(result.secure_url);
+          resolve(result);
         },
       )
       .end(buffer);
   });
 };
+
+const deleteFromCloudinary = async (publicId) => {
+  return await cloudinary.uploader.destroy(publicId);
+};
+
+export { uploadToCloudinary, deleteFromCloudinary };

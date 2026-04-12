@@ -11,11 +11,13 @@ export default function CustomInput({
   type,
   placeholder,
   onChange,
+  ...props
 }) {
   return (
     <div className="relative">
       {children}
       <input
+        {...props}
         type={type}
         placeholder={placeholder}
         onChange={onChange}
