@@ -53,7 +53,7 @@ export default function LoginPage() {
               {/* LOGO */}
               <div className="flex justify-center">
                 <div className="w-16 h-16 px-4 rounded-xl flex items-center justify-center shadow-xl/10 bg-white">
-                  <span className="text-3xl px-3 font-semibold text-background">
+                  <span className="text-3xl px-3 font-semibold text-[#EBEBEB]">
                     IOU
                   </span>
                 </div>

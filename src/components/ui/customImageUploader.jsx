@@ -1,21 +1,81 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Upload, Image as ImageIcon, Trash2 } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
+import { useFormContext, Controller } from "react-hook-form";
+import { uploadFile, deleteFile } from "@/services/ProjectService";
+import { useLoading } from "@/context/LoadingContext";
 
-export default function CustomImageUploader() {
+export default function CustomImageUploader({ name }) {
+  const { control } = useFormContext();
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => <Uploader field={field} />}
+    />
+  );
+}
+
+function Uploader({ field }) {
+  const MAX_SIZE = 5 * 1024 * 1024;
   const inputRef = useRef(null);
   const fileInputRef = useRef(null);
-  const [file, setFile] = useState(null);
+
   const [preview, setPreview] = useState(null);
+  const [uploaded, setUploaded] = useState(null);
+  const [error, setError] = useState(false);
+
+  const { setLoading } = useLoading();
+
+  useEffect(() => {
+    if (field.value?.url) {
+      setPreview(field.value.url);
+      setUploaded(field.value);
+    }
+  }, [field.value]);
+
+  // UPLOAD FILE TO SERVER
+  const uploadToServer = async (file) => {
+    try {
+      setLoading(true);
+
+      const promiseUpload = [
+        uploadFile(file),
+        uploaded?.public_id ? deleteFile(uploaded.public_id) : Promise.resolve({ success: true })
+      ];
+
+      // update async await
+      const [resUpload, resDelete] = await Promise.all(promiseUpload);
+
+      if (!resUpload.success || !resDelete.success) {
+        throw new Error("Error upload data to server");
+      }
+
+      const response = resUpload.data;
+      field.onChange(response);
+      setUploaded(response);
+      setPreview(URL.createObjectURL(file));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setError(false);
+      setLoading(false);
+    }
+  };
 
   // HANDLE FILE
   const handleFile = (file) => {
     if (!file) return;
 
-    setFile(file);
-    setPreview(URL.createObjectURL(file));
+    if (file.size > MAX_SIZE) {
+      return setError(true);
+    }
+
+    return uploadToServer(file);
   };
 
   // INPUT CHANGE
@@ -30,9 +90,24 @@ export default function CustomImageUploader() {
   };
 
   // DELETE
-  const handleRemove = () => {
-    setFile(null);
-    setPreview(null);
+  const handleRemove = async () => {
+    try {
+      setLoading(true);
+
+      if (!uploaded.public_id) {
+        return null;
+      }
+
+      await deleteFile(uploaded.public_id);
+
+      field.onChange(null);
+      setPreview(null);
+      setUploaded(null);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleButtonClick = () => {
@@ -46,7 +121,7 @@ export default function CustomImageUploader() {
 
   // ACTIVE STATE BUTTON UPLOAD
   const activeState = () => {
-    if (file) {
+    if (preview) {
       return "bg-[#496C6F] text-white opacity-100 hover:font-medium";
     }
     return "";
@@ -59,9 +134,12 @@ export default function CustomImageUploader() {
         onClick={() => inputRef.current.click()}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
-        className="w-full h-60 border border-dashed border-neutral-300 rounded-2xl 
-        flex flex-col items-center justify-center text-center cursor-pointer 
-        hover:bg-neutral-50 transition"
+        className={cn(
+          "w-full h-60 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer transition",
+          error
+            ? "border border-dashed border-[#E92323] text-[#E92323]"
+            : "border border-dashed border-neutral-300",
+        )}
       >
         {!preview ? (
           <>
@@ -72,6 +150,11 @@ export default function CustomImageUploader() {
             <p className="text-base font-normal normal-case opacity-60">
               Drop file or click here to choose file.
             </p>
+            {error && (
+              <p className="text-base font-normal normal-case opacity-60">
+                Image file max is 5MB
+              </p>
+            )}
           </>
         ) : (
           <>
@@ -105,7 +188,7 @@ export default function CustomImageUploader() {
         {/* DELETE */}
         <button
           onClick={handleRemove}
-          disabled={!file}
+          disabled={!preview}
           className="w-full normal-case px-6 py-3
           rounded-full
           text-sm opacity-40 cursor-pointer
@@ -117,6 +200,7 @@ export default function CustomImageUploader() {
 
         {/* UPLOAD */}
         <button
+          type="button"
           onClick={handleButtonClick}
           className={`
           ${activeState()}

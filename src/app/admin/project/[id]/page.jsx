@@ -1,4 +1,5 @@
 "use client";
+
 import FormBasicInformation from "@/components/sections/project/BasicInformation";
 import SectionForm from "@/components/sections/project/SectionForm";
 import { useLoading } from "@/context/LoadingContext";
@@ -7,33 +8,65 @@ import { DeleteProjectModal } from "@/components/ui/deleteProjectModal";
 import { FaPlus } from "react-icons/fa";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useParams } from "next/navigation";
 
-import { uploadFormData, deleteAllFile } from "@/services/ProjectService";
+import {
+  updateProjectById,
+  deleteAllFile,
+  getProjectById,
+  deleteProject,
+} from "@/services/ProjectService";
 
 import { PROJECT_DEFAULT_VALUES } from "@/constant/projectDefaultValue";
 import { extractPublicIds } from "@/utils/clientTools";
 
-export default function ProjectPage({}) {
+export default function EditProjectPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const route = useRouter();
+
+  const router = useRouter();
+  const params = useParams();
   const { setLoading } = useLoading();
+
   const methods = useForm({
-    defaultValues: PROJECT_DEFAULT_VALUES
+    defaultValues: PROJECT_DEFAULT_VALUES,
   });
+
+  const { reset } = methods;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const res = await getProjectById(params.id);
+        if (!res.success) {
+          throw new Error("Failed get detail");
+        }
+        reset(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (params.id) {
+      fetchData();
+    }
+  }, [params.id, reset, setLoading]);
 
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const result = await uploadFormData(data);
+      const project_id = data._id;
+
+      const result = await updateProjectById(project_id, data);
 
       if (!result.success) {
-        throw new Error('Failed when saving data project');
+        throw new Error("Failed update project");
       }
 
-      // BUAT TOAST
-      route.push('/admin/dashboard');
+      router.push("/admin/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -44,12 +77,17 @@ export default function ProjectPage({}) {
   const handleFinalDelete = async () => {
     try {
       setLoading(true);
+
       const data = methods.getValues();
       const ids = extractPublicIds(data);
 
-      await deleteAllFile(ids);
+      await Promise.all([
+        deleteProject(data._id),
+        deleteAllFile(ids)
+      ])
+
       setShowDeleteModal(false);
-      route.push('/admin/dashboard');
+      router.push("/admin/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -60,35 +98,30 @@ export default function ProjectPage({}) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <main
-          id="project detail"
-          className="h-min-[calc(100dvh-90px)] flex flex-col pt-4"
-        >
-          {/* DELETE MODAL */}
+        <main className="h-min-[calc(100dvh-90px)] flex flex-col pt-4">
           <DeleteProjectModal
             isOpen={showDeleteModal}
             onOpenChange={setShowDeleteModal}
             onConfirm={handleFinalDelete}
           />
 
-          {/* CARD */}
-          <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
-            {/* HEADER */}
-            <section className="px-6 py-4 flex items-center justify-between">
-              <p className="font-medium normal-case text-base">Portfolio</p>
+          <div className="w-full h-full border bg-[#FAFAFA] rounded-[24px] flex flex-col">
+            <section className="px-6 py-4">
+              <p>Edit Project</p>
             </section>
 
-            {/* MAIN CONTENT */}
-            <section className="border-t grow rounded-t-[24px] p-6">
+            <section className="border-t grow p-6">
               <FormBasicInformation />
-              <h4 className="pt-10 pb-6 font-medium normal-case text-2xl opacity-60">
+
+              <h4 className="pt-10 pb-6 text-2xl opacity-60">
                 Project Content
               </h4>
+
               <div className="flex flex-col gap-3">
-                <SectionForm name="sections.discover" title="Discover"/>
-                <SectionForm name="sections.define" title="Define"/>
-                <SectionForm name="sections.design" title="Design"/>
-                <SectionForm name="sections.deliver" title="Deliver"/>
+                <SectionForm name="sections.discover" title="Discover" />
+                <SectionForm name="sections.define" title="Define" />
+                <SectionForm name="sections.design" title="Design" />
+                <SectionForm name="sections.deliver" title="Deliver" />
               </div>
 
               {/* BUTTON ACTIOn */}
