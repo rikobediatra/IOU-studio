@@ -1,12 +1,16 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
+import imageCompression from "browser-image-compression";
+
 import { Image as ImageIcon } from "lucide-react";
+
+import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 import { useFormContext, Controller } from "react-hook-form";
-import { uploadFile, deleteFile } from "@/services/ProjectService";
+
+import { cn } from "@/lib/utils";
 import { useLoading } from "@/context/LoadingContext";
+import { uploadFile, deleteFile } from "@/services/ProjectService";
 
 export default function CustomImageUploader({ name }) {
   const { control } = useFormContext();
@@ -40,11 +44,25 @@ function Uploader({ field }) {
 
   // UPLOAD FILE TO SERVER
   const uploadToServer = async (file) => {
+    const options = {
+      maxSizeMB: 4,           // Target ukuran di bawah limit Vercel (4.5MB)
+      maxWidthOrHeight: 2560, // Menjaga resolusi tetap tajam (Full HD+)
+      useWebWorker: true,     // Agar UI tidak freeze saat kompresi
+      initialQuality: 0.8     // Kualitas awal 80%
+    };
+
     try {
       setLoading(true);
+      let fileToUpload = file;
+
+      if (file.size > (4 * 1024 * 1024)) {
+        console.log(`Compressing ${file.name}... original size: ${(file.size / 1024 / 1024).toFixed(2)} MB`);
+        fileToUpload = await imageCompression(fileToUpload, options);
+        console.log(`Compressed size: ${(fileToUpload.size / 1024 / 1024).toFixed(2)} MB`);
+      }
 
       const promiseUpload = [
-        uploadFile(file),
+        uploadFile(fileToUpload),
         uploaded?.public_id ? deleteFile(uploaded.public_id) : Promise.resolve({ success: true })
       ];
 
