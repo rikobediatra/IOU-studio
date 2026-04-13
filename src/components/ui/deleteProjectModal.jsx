@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { CustomButton } from "./customButton";
 
 export function DeleteProjectModal({ isOpen, onOpenChange, onConfirm }) {
-  const [confirmText, setConfirmText] = useState();
+  const [confirmText, setConfirmText] = useState('');
 
   const handleConfirm = (e) => {
     if (confirmText !== "delete") {

@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { uploadFormData, deleteAllFile } from "@/services/ProjectService";
 import { PROJECT_DEFAULT_VALUES } from "@/constant/projectDefaultValue";
+import { extractPublicIds } from "@/utils/clientTools";
 
 export default function ProjectPage({}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -52,20 +53,6 @@ export default function ProjectPage({}) {
     } finally {
       setLoading(false);
     }
-  };
-
-  const extractPublicIds = (data) => {
-    const ids = [];
-    if (data.thumbnail?.public_id) {
-      ids.push(data.thumbnail.public_id);
-    }
-    const sections = data.sections;
-    Object.values(sections).forEach((section) => {
-      if (section.image?.public_id) {
-        ids.push(section.image.public_id);
-      }
-    });
-    return ids;
   };
 
   return (
