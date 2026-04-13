@@ -57,6 +57,27 @@ const deleteProject = async (project_id) => {
   return data;
 };
 
+const getProjectById = async (project_id) => {
+  const res = await fetch(`/api/projects/${project_id}`, {
+    method: "GET",
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to get data projects");
+  }
+  const response = await res.json();
+  return response;
+};
+
+const updateProjectById = async (project_id, data) => {
+  const res = await fetch(`${basedURL}/api/projects/${project_id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  return result;
+};
+
 export {
   uploadFile,
   deleteFile,
@@ -64,4 +85,6 @@ export {
   uploadFormData,
   getProjects,
   deleteProject,
+  getProjectById,
+  updateProjectById
 };
