@@ -1,8 +1,10 @@
 "use client"
 import Accordion from "@/components/ui/accordion";
 import { ArrowRight } from "phosphor-react";
+import { useRouter } from "next/navigation";
 
 export default function Process({ listService }) {
+  const router = useRouter();
   return (
     <section
       id="process"
@@ -24,6 +26,7 @@ export default function Process({ listService }) {
         <button 
             className="flex flex-row gap-4.5 items-center border border-foreground bg-[#F5F5F5] text-foreground rounded-full cursor-pointer
               hover:bg-foreground hover:text-background transition"
+            onClick={() => router.push('/works')}
           >
             SEE OUR WORKS <span><ArrowRight width={16} height={16} /></span>
           </button>

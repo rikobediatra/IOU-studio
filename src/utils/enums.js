@@ -1,8 +1,8 @@
 const listService = {
-  1: 'INDUSTRIAL DESIGN',
-  2: 'MODELING',
-  3: 'PROTOTYPING',
-  4: 'FINISHING'
+  'industrialDesign': 'INDUSTRIAL DESIGN',
+  'prototyping': 'MODELING',
+  'modeling': 'PROTOTYPING',
+  'finishing': 'FINISHING'
 }
 
 const typeWorkDetail = {

@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose 
 import LocalInfo from "@/components/ui/localInfo";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const routeColor = {
   '/about': {
@@ -37,6 +38,11 @@ export default function Navbar() {
   const bgColor = dynamicRoute?.bg || routeColor[pathName]?.bg || 'bg-foreground';
   const textColor = dynamicRoute?.text || routeColor[pathName]?.text || 'text-background';
   const images = routeColor[pathName]?.logo === 'white' ? '/images/CompanyLogoBlack.png' : '/images/CompanyLogoWhite.png';
+  const activeRoute = (routeName) => {
+    if (pathName !== routeName) {
+      return 'opacity-60'
+    }
+  }
 
   return (
     <header className={`absolute top-0 left-0 right-0 z-50 ${bgColor}`}>
@@ -57,10 +63,22 @@ export default function Navbar() {
           <div className="pl-20">
             {/* Desktop Menu */}
             <nav className="hidden md:flex items-center gap-6 text-sm tracking-wide">
-              <Link href="/about" className={`${textColor} transition-colors opacity-60 hover:opacity-100`}>
+              <Link href="/about" 
+                className={cn(
+                  "transition-colors hover:font-semibold",
+                  textColor,
+                  activeRoute('/about')
+                )}
+              >
                 ABOUT
               </Link>
-              <Link href="/works" className={`${textColor} transition-colors opacity-60 hover:opacity-100`}>
+              <Link href="/works"
+                className={cn(
+                  "transition-colors hover:font-semibold",
+                  textColor,
+                  activeRoute('/works')
+                )}
+              >
                 WORKS
               </Link>
             </nav>

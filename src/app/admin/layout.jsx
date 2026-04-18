@@ -1,11 +1,16 @@
 import { LoadingProvider } from "@/context/LoadingContext";
+import { NotificationProvider } from "@/context/NotificationContext";
 import LoadingOverlayWrapper from "@/components/ui/loadingCircularWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function AdminLayout({ children }) {
   return (
     <LoadingProvider>
-      <LoadingOverlayWrapper />
-      {children}
+      <NotificationProvider>
+        <LoadingOverlayWrapper />
+        <Toaster position="bottom-right" richColor/>
+        {children}
+      </NotificationProvider>
     </LoadingProvider>
   );
 }

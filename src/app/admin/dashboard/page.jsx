@@ -19,6 +19,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/context/LoadingContext";
+import { useNotification } from "@/context/NotificationContext";
 import { deleteAllFile, deleteProject, getProjects } from "@/services/ProjectService";
 import { extractPublicIds } from "@/utils/clientTools";
 
@@ -29,6 +30,7 @@ export default function Dashboard() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const router = useRouter();
   const { setLoading } = useLoading();
+  const { notifyError } = useNotification();
 
   useEffect(() => {
     fetchDataProject();
@@ -43,7 +45,7 @@ export default function Dashboard() {
         setProjects(res.data);
       }
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
     } finally {
       setLoading(false);
     }
@@ -66,9 +68,10 @@ export default function Dashboard() {
       setSelectedProject({});
       return fetchDataProject();
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
+    } finally {
       setLoading(false);
-    } 
+    }
   };
 
   const renderProjects = () => {

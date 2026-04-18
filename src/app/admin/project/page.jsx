@@ -1,14 +1,15 @@
 "use client";
 import FormBasicInformation from "@/components/sections/project/BasicInformation";
 import SectionForm from "@/components/sections/project/SectionForm";
-import { useLoading } from "@/context/LoadingContext";
 import { CustomButton } from "@/components/ui/customButton";
 import { DeleteProjectModal } from "@/components/ui/deleteProjectModal";
 import { FaPlus } from "react-icons/fa";
 
-import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLoading } from "@/context/LoadingContext";
+import { useNotification } from "@/context/NotificationContext";
+import { useForm, FormProvider } from "react-hook-form";
 
 import { uploadFormData, deleteAllFile } from "@/services/ProjectService";
 
@@ -19,6 +20,8 @@ export default function ProjectPage({}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const route = useRouter();
   const { setLoading } = useLoading();
+  const { notifyError } = useNotification();
+
   const methods = useForm({
     defaultValues: PROJECT_DEFAULT_VALUES
   });
@@ -32,10 +35,9 @@ export default function ProjectPage({}) {
         throw new Error('Failed when saving data project');
       }
 
-      // BUAT TOAST
       route.push('/admin/dashboard');
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
     } finally {
       setLoading(false);
     }
@@ -51,7 +53,7 @@ export default function ProjectPage({}) {
       setShowDeleteModal(false);
       route.push('/admin/dashboard');
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
     } finally {
       setLoading(false);
     }

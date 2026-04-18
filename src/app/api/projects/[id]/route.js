@@ -52,7 +52,7 @@ export async function PUT(req, context) {
 
     const params = await context.params;
     const id = params?.id;
-    console.log(params);
+
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return Response.json(
         { success: false, message: "Invalid ID" },

@@ -13,11 +13,11 @@ export default function WorksDescription({ section, detail }) {
       <h3>
         {typeWorkDetail[section]}
       </h3>
-      {detail.images && 
+      {detail.image.url !== '' && 
         <div className="relative w-full h-130 max-h-180 overflow-hidden rounded-xl">
           <Image
             alt={detail.paragraph}
-            src={detail.images}
+            src={detail.image.url}
             fill
             unoptimized
             sizes="(max-width: 768px) 100vw, 1200px"

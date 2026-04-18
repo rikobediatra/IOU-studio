@@ -1,4 +1,4 @@
-const getDataWorksById = async (url) => {
+const getProjectById = async (url) => {
   const res = await fetch(url, {
     cache: "no-store",
     next: {
@@ -14,4 +14,4 @@ const getDataWorksById = async (url) => {
   return res.json();
 };
 
-export default getDataWorksById
+export default getProjectById

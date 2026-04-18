@@ -10,7 +10,7 @@ export default function DetailWorks({ detailWork }) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={detailWork.images}
+          src={detailWork.thumbnail.url}
           alt="Hero Background"
           fill
           priority

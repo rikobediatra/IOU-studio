@@ -3,6 +3,11 @@ import Process from "@/components/sections/about/Process";
 import Approach from "@/components/sections/about/Approach";
 import OurTeam from "@/components/sections/about/Team";
 
+import Discover from "@/assets/images/about/Discover.png";
+import Define from "@/assets/images/about/Define.png";
+import Design from "@/assets/images/about/Design.png";
+import Deliver from "@/assets/images/about/Deliver.png";
+
 export default function AboutPages() {
   const listService = [
     {
@@ -10,28 +15,28 @@ export default function AboutPages() {
       subTitle: "Every product starts with understanding",
       description:
         "We believe great design is built on understanding, collaboration, and iteration. Our process is crafted to turn conversation into creation — guiding every idea from its first spark to a meaningful, tangible product.",
-      image: "/images/about/Discover.png",
+      image: Discover,
     },
     {
       title: "DEFINE",
       subTitle: "Turning insights into clarity",
       description:
         "Here, we translate what we’ve learned into a clear plan. We outline opportunities, product strategy, and design directions that align with your brand and objectives.",
-      image: "/images/about/Define.png",
+      image: Define,
     },
     {
       title: "DESIGN",
       subTitle: "Where Ideas Take Form",
       description:
         "With a clear direction in place, we begin shaping ideas into tangible solutions. From concept sketches and 3D modeling to iterative refinement, we balance creativity and precision to develop products that are both functional and expressive.",
-      image: "/images/about/Design.png",
+      image: Design,
     },
     {
       title: "DELIVER",
       subTitle: "From Concept to Real-World Impact",
       description:
         "We finalize, test, and prepare the design for production or launch. Through validation, simulation, and close collaboration, we ensure the outcome performs seamlessly — not just visually, but in real-world application.",
-      image: "/images/about/Deliver.png",
+      image: Deliver,
     },
   ];
 
@@ -81,7 +86,9 @@ export default function AboutPages() {
       <Introduction />
       <Process listService={listService}/>
       <Approach listApproach={listApproach}/>
-      <OurTeam listTeam={team}/>
+
+      {/* HIDE SECTION */}
+      {/* <OurTeam listTeam={team}/> */}
     </main>
   );
 }

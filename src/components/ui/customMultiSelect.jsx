@@ -19,7 +19,7 @@ export default function CustomMultiSelect({ name }) {
         control={control}
         render={({ field }) => (
           <MultiSelect
-            className="px-6 py-4.75 h-17.25 rounded-full text-[12px] font-light w-full"
+            className="bg-[#FFFFFF] px-6 py-4.75 h-17.25 rounded-full text-[12px] font-normal w-full"
             options={options}
             defaultValue={field.value || []}
             onValueChange={(val) => field.onChange(val)}
