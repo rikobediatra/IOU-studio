@@ -22,6 +22,7 @@ export async function POST(req, _res) {
       },
     });
   } catch (error) {
+    console.log(error)
     return Response.json(
       {
         success: false,

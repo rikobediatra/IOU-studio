@@ -9,7 +9,6 @@ const uploadToCloudinary = async (file, folder = "iou_studio") => {
         {
           folder: folder,
           resource_type: "image",
-          transformation: [{ quality: "auto" }, { fetch_format: "auto" }],
         },
         (error, result) => {
           if (error) return reject(error);

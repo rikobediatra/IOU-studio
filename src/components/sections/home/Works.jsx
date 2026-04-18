@@ -1,11 +1,37 @@
 "use client"
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLoading } from "@/context/LoadingContext";
+import { getProjects } from "@/services/ProjectService";
 import { ArrowRight} from "phosphor-react";
 
-export default function Works({ listProjects }) {
+export default function Works({}) {
+  const [listProjects, setListProjects] = useState([]);
   const router = useRouter();
+  const { setLoading } = useLoading();
+
+  useEffect(() => {
+    const fetchDataProject = async () => {
+      try {
+        // set loading
+        setLoading(true);
+        const res = await getProjects(4);
+        
+        if (res.success) {
+          setListProjects(res.data);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDataProject();
+  }, [setLoading]);
+
   return (
     <section 
       id="works"
@@ -20,32 +46,43 @@ export default function Works({ listProjects }) {
       </div>
 
       {/* CONTENT */}
-      <div className="grid grid-cols-1 lg:px-72 md:grid-cols-2 gap-4">
-        {listProjects.map((project) => (
-          <div key={project.projectId} className="group cursor-pointer text-background hover:text-foreground">
-            <div className="relative overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.projectName}
-                width={400}
-                height={400}
-                className="
-                  w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105
-                  opacity-50 hover:opacity-100
-                "
-              />
-            </div>
+      <div className="flex justify-center w-full gap-4">
+        <div className="flex flex-wrap justify-center lg:justify-start 
+          gap-x-4 gap-y-14 w-204"
+        >
+          {listProjects.map((project) => (
+            <div 
+              key={project._id} 
+              className="group w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100 
+              cursor-pointer text-foreground lg:text-background hover:text-foreground"
+            >
+              <div className="w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100
+                relative overflow-hidden"
+              >
+                <Image
+                  src={project.thumbnail.url}
+                  alt={project.title}
+                  unoptimized
+                  fill
+                  sizes="400px"
+                  className="
+                    object-cover transition-transform duration-500 group-hover:scale-105
+                    opacity-100 lg:opacity-50 lg:hover:opacity-100
+                  "
+                />
+              </div>
 
-            <div className="flex justify-between text-sm tracking-wider">
-              <span className="">{project.projectId}</span>
-              <span className="text-lg uppercase">{project.projectName}</span>
+              <div className="flex justify-between items-center h-4.5 mt-4 text-sm tracking-wider text-center">
+                <span className="uppercase">{project.subTitle}</span>
+                <span className="text-base uppercase">{project.title}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* FOOTER BUTTON */}
-      <div className="my-10 flex justify-center">
+      <div className="my-14 flex justify-center">
         <button
           className="
           border border-black rounded-full flex flex-row items-center gap-4.5 transition-all duration-300

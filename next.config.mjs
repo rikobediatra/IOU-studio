@@ -2,7 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   compress: true,
-  poweredByHeader: false
+  poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

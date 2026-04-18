@@ -6,7 +6,7 @@ export default function CardWorks({ work }) {
       {/* IMAGE */}
       <div className="relative w-full aspect-square max-h-70 overflow-hidden group">
         <Image
-          src={work.image}
+          src={work.thumbnail.url}
           alt={work.title}
           fill
           sizes="(max-width:768px) 100vw, 33vw"
@@ -37,7 +37,7 @@ export default function CardWorks({ work }) {
         "
       >
         <p>{work.title}</p>
-        <p>{work.projectName}</p>
+        <p>{work.subTitle}</p>
       </div>
 
     </div>
