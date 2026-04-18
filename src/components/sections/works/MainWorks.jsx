@@ -9,7 +9,7 @@ import { getProjects } from "@/services/ProjectService";
 
 import { CaretRight } from "phosphor-react";
 
-export default function MainWorks({ listWorks }) {
+export default function MainWorks() {
   const [listProjects, setListProjects] = useState([]);
   const router = useRouter();
   const { setLoading } = useLoading();
@@ -19,7 +19,7 @@ export default function MainWorks({ listWorks }) {
       try {
         // set loading
         setLoading(true);
-        const res = await getProjects(4);
+        const res = await getProjects();
         
         if (res.success) {
           setListProjects(res.data);
@@ -53,7 +53,9 @@ export default function MainWorks({ listWorks }) {
 
       {/* LIST OF WORKS */}
       <div className=" py-30 flex gap-x-10 gap-y-14 flex-wrap">
-        {listProjects.map((project) => {
+        {listProjects.map((project, index) => {
+          const sequenceNumber = listProjects.length - index;
+          const displayId = `P-${sequenceNumber.toString().padStart(4, "0")}`;
           return (
             <div
               key={project._id}
@@ -62,6 +64,7 @@ export default function MainWorks({ listWorks }) {
             >
               <CardWorks
                 work={project}
+                displayId={displayId}
               />
             </div>
           );

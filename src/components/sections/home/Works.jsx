@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/context/LoadingContext";
 import { getProjects } from "@/services/ProjectService";
-import { ArrowRight} from "phosphor-react";
+import { ArrowRight } from "phosphor-react";
 
 export default function Works({}) {
   const [listProjects, setListProjects] = useState([]);
@@ -18,7 +18,7 @@ export default function Works({}) {
         // set loading
         setLoading(true);
         const res = await getProjects(4);
-        
+
         if (res.success) {
           setListProjects(res.data);
         }
@@ -27,16 +27,13 @@ export default function Works({}) {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchDataProject();
   }, [setLoading]);
 
   return (
-    <section 
-      id="works"
-      className="min-h-screen w-full pt-28 px-6 md:px-10"
-    >
+    <section id="works" className="min-h-screen w-full pt-28 px-6 md:px-10">
       <div className="mb-20 grid grid-cols-1 gap-4">
         <h2 className="text-5xl mb-10 uppercase">WORKS</h2>
         <h4 className="text-xl uppercase">
@@ -47,37 +44,43 @@ export default function Works({}) {
 
       {/* CONTENT */}
       <div className="flex justify-center w-full gap-4">
-        <div className="flex flex-wrap justify-center lg:justify-start 
+        <div
+          className="flex flex-wrap justify-center lg:justify-start 
           gap-x-4 gap-y-14 w-204"
         >
-          {listProjects.map((project) => (
-            <div 
-              key={project._id} 
-              className="group w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100 
-              cursor-pointer text-foreground lg:text-background hover:text-foreground"
-            >
-              <div className="w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100
-                relative overflow-hidden"
+          {listProjects.map((project, index) => {
+            const sequenceNumber = listProjects.length - index;
+            const displayId = `P-${sequenceNumber.toString().padStart(4, "0")}`;
+            return (
+              <div
+                key={project._id}
+                className="group w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100 
+                cursor-pointer text-foreground lg:text-background hover:text-foreground"
               >
-                <Image
-                  src={project.thumbnail.url}
-                  alt={project.title}
-                  unoptimized
-                  fill
-                  sizes="400px"
-                  className="
-                    object-cover transition-transform duration-500 group-hover:scale-105
-                    opacity-100 lg:opacity-50 lg:hover:opacity-100
-                  "
-                />
-              </div>
+                <div
+                  className="w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100
+                  relative overflow-hidden"
+                >
+                  <Image
+                    src={project.thumbnail.url}
+                    alt={project.title}
+                    unoptimized
+                    fill
+                    sizes="400px"
+                    className="
+                      object-cover transition-transform duration-500 group-hover:scale-105
+                      opacity-100 lg:opacity-50 lg:hover:opacity-100
+                    "
+                  />
+                </div>
 
-              <div className="flex justify-between items-center h-4.5 mt-4 text-sm tracking-wider text-center">
-                <span className="uppercase">{project.subTitle}</span>
-                <span className="text-base uppercase">{project.title}</span>
+                <div className="flex justify-between items-center h-4.5 mt-4 text-sm tracking-wider text-center">
+                  <span className="uppercase">{displayId}</span>
+                  <span className="text-base uppercase">{project.title}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -88,9 +91,12 @@ export default function Works({}) {
           border border-black rounded-full flex flex-row items-center gap-4.5 transition-all duration-300
           cursor-pointer hover:bg-black hover:text-white
           "
-          onClick={() => router.push('/works')}
+          onClick={() => router.push("/works")}
         >
-          SEE OUR WORKS <span><ArrowRight width={14} height={14} /></span>
+          SEE OUR WORKS{" "}
+          <span>
+            <ArrowRight width={14} height={14} />
+          </span>
         </button>
       </div>
     </section>

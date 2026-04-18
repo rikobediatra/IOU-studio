@@ -37,8 +37,9 @@ const uploadFormData = async (data) => {
   return result;
 };
 
-const getProjects = async (limit = 10) => {
-  const res = await fetch(`/api/projects?limit=${limit}`, {
+const getProjects = async (limit) => {
+  const url = limit ? `/api/projects?limit=${limit}` : '/api/projects'
+  const res = await fetch(url, {
     method: "GET",
     cache: "no-store",
   });

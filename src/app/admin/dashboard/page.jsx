@@ -20,7 +20,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/context/LoadingContext";
 import { useNotification } from "@/context/NotificationContext";
-import { deleteAllFile, deleteProject, getProjects } from "@/services/ProjectService";
+import {
+  deleteAllFile,
+  deleteProject,
+  getProjects,
+} from "@/services/ProjectService";
 import { extractPublicIds } from "@/utils/clientTools";
 
 export default function Dashboard() {
@@ -81,16 +85,22 @@ export default function Dashboard() {
 
     return (
       <section className="border-t rounded-t-[24px] p-6 flex flex-row gap-6 flex-wrap">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project._id}
-            project={project}
-            onEdit={(item) => router.push(`/admin/project/${item._id}`)}
-            onDelete={(item) => {
-              handleDelete(item);
-            }}
-          />
-        ))}
+        {projects.map((project, index) => {
+          const sequenceNumber = projects.length - index;
+          const displayId = `P-${sequenceNumber.toString().padStart(4, "0")}`;
+
+          return (
+            <ProjectCard
+              key={project._id}
+              project={project}
+              displayId={displayId}
+              onEdit={(item) => router.push(`/admin/project/${item._id}`)}
+              onDelete={(item) => {
+                handleDelete(item);
+              }}
+            />
+          );
+        })}
       </section>
     );
   };
@@ -115,7 +125,7 @@ export default function Dashboard() {
         onOpenChange={setShowDeleteModal}
         onConfirm={onConfirmDelete}
       />
-      
+
       {/* CARD */}
       <div className="w-full h-full border border[#DDDDDD] bg-[#FAFAFA] rounded-[24px] flex flex-col">
         {/* Header */}

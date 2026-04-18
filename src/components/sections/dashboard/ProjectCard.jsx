@@ -14,20 +14,21 @@ import { FaEdit } from "react-icons/fa";
 import { FiTrash } from "react-icons/fi";
 import folderSvg from "@/assets/icons/folder.svg";
 
-export default function ProjectCard({ project, onEdit, onDelete }) {
+export default function ProjectCard({ project, displayId, onEdit, onDelete }) {
   return (
-    <div className=" w-63.5">
+    <div className="flex flex-col gap-4 w-63.5">
       <div>
         <Image
           alt="project title"
           src={folderSvg}
-          className="object-cover w-63.5 h-51"
+          className="object-cover w-63.5 h-51 cursor-pointer"
           loading="eager"
+          onClick={() => onEdit(project)}
         />
       </div>
       <div className="flex flex-row items-end justify-between">
         <div className="flex flex-col text-start">
-          <p className="text-sm font-light">{ project.subTitle }</p>
+          <p className="text-sm font-light">{ displayId }</p>
           <p className="text-base font-normal">{ project.title }</p>
         </div>
         <div className="">
