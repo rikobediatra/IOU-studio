@@ -36,7 +36,7 @@ export default function About() {
             and businesses alike.
           </p>
           <button 
-            className="flex flex-row gap-4.5 items-center border border-foreground bg-foreground text-background rounded-full w-56.75 cursor-pointer
+            className="flex flex-row gap-4.5 items-center border border-foreground bg-foreground text-background rounded-full cursor-pointer
               hover:bg-[#F5F5F5] hover:text-foreground transition"
             onClick={() => {
               const section = document.getElementById('footer')

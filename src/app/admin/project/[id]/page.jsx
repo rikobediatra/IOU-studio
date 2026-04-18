@@ -2,7 +2,6 @@
 
 import FormBasicInformation from "@/components/sections/project/BasicInformation";
 import SectionForm from "@/components/sections/project/SectionForm";
-import { useLoading } from "@/context/LoadingContext";
 import { CustomButton } from "@/components/ui/customButton";
 import { DeleteProjectModal } from "@/components/ui/deleteProjectModal";
 import { FaPlus } from "react-icons/fa";
@@ -10,6 +9,9 @@ import { FaPlus } from "react-icons/fa";
 import { useForm, FormProvider } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { useLoading } from "@/context/LoadingContext";
+import { useNotification } from "@/context/NotificationContext";
+
 
 import {
   updateProjectById,
@@ -27,6 +29,7 @@ export default function EditProjectPage() {
   const router = useRouter();
   const params = useParams();
   const { setLoading } = useLoading();
+  const { notifyError } = useNotification();
 
   const methods = useForm({
     defaultValues: PROJECT_DEFAULT_VALUES,
@@ -43,8 +46,8 @@ export default function EditProjectPage() {
           throw new Error("Failed get detail");
         }
         reset(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        notifyError(error.message);
       } finally {
         setLoading(false);
       }
@@ -53,7 +56,7 @@ export default function EditProjectPage() {
     if (params.id) {
       fetchData();
     }
-  }, [params.id, reset, setLoading]);
+  }, [notifyError, params.id, reset, setLoading]);
 
   const onSubmit = async (data) => {
     try {
@@ -68,7 +71,7 @@ export default function EditProjectPage() {
 
       router.push("/admin/dashboard");
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
     } finally {
       setLoading(false);
     }
@@ -89,7 +92,7 @@ export default function EditProjectPage() {
       setShowDeleteModal(false);
       router.push("/admin/dashboard");
     } catch (error) {
-      console.log(error);
+      notifyError(error.message);
     } finally {
       setLoading(false);
     }
