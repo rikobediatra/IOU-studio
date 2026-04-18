@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IOU Studio - Web Platform & CMS
 
-## Getting Started
+Platform digital resmi **IOU Studio**. Aplikasi ini mengintegrasikan profil perusahaan publik yang dinamis dengan sistem manajemen konten (CMS) internal yang aman untuk pengelolaan aset studio.
 
-First, run the development server:
+## 🛠 Tech Stack
 
+- **Core:** Next.js 16 (App Router)
+- **Database:** MongoDB, Cloudinary
+- **UI/UX:** Shadcn UI, Tailwind CSS, Lucide Icons, React Icons
+- **Auth:** NextAuth.js
+- **Deployment:** Vercel
+
+## 🌟 Fitur Utama
+
+### 1. Public Facing Site
+
+- **Portfolio Showcase:** Galeri karya studio yang responsif.
+- **Services Page:** Penjelasan layanan IOU Studio.
+- **SEO Optimized:** Menggunakan metadata dinamis untuk setiap halaman.
+- **High Performance:** Optimasi gambar otomatis menggunakan `next/image`.
+
+### 2. Admin Dashboard (CMS)
+
+- **Secure Login:** Proteksi halaman admin khusus internal.
+- **Full CRUD:** Manajemen konten (Create, Read, Update, Delete) tanpa akses database manual.
+- **Data Persistence:** Integrasi langsung dengan MongoDB untuk pembaruan konten real-time.
+- **Modern Interface:** Dashboard minimalis dan intuitif menggunakan Shadcn UI.
+
+## 🚀 Cara Menjalankan Proyek
+
+1. **Clone Repository**
+```bash
+git clone https://github.com
+cd iou-studio
+```
+2. **Install Dependencies**
+```bash
+npm install
+```
+3. **Setup Environment Variables**
+```bash
+NEXT_PUBLIC_API_URL=your_public_api
+ADMIN_USERNAME=username
+ADMIN_PASSWORD=password_admin
+JWT_SECRET=JWT
+NODE_ENV=''
+
+MONGODB_USERNAME=username_mongodb
+MONGODB_PASSWORD=password_mongodb
+MONGODB_URI=your_uri_mongodb
+
+CLOUDINARY_CLOUD_NAME=object_storage_name
+CLOUDINARY_API_KEY=object_storage_key
+CLOUDINARY_API_SECRET=object_storage_secret
+```
+4. **Running the App**
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
