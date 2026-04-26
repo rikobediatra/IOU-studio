@@ -14,7 +14,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { uploadFormData, deleteAllFile } from "@/services/ProjectService";
 
 import { PROJECT_DEFAULT_VALUES } from "@/constant/projectDefaultValue";
-import { extractPublicIds } from "@/utils/clientTools";
+import { extractPublicIds, prepareProjectPayload } from "@/utils/clientTools";
 
 export default function ProjectPage({}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -29,7 +29,8 @@ export default function ProjectPage({}) {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-      const result = await uploadFormData(data);
+      const payload = await prepareProjectPayload(data);
+      const result = await uploadFormData(payload);
 
       if (!result.success) {
         throw new Error('Failed when saving data project');

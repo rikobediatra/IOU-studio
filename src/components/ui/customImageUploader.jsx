@@ -9,9 +9,7 @@ import { useRef, useState, useEffect } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
-import { useLoading } from "@/context/LoadingContext";
 import { useNotification } from "@/context/NotificationContext";
-import { uploadFile, deleteFile } from "@/services/ProjectService";
 
 export default function CustomImageUploader({ name }) {
   const { control } = useFormContext();
@@ -34,69 +32,74 @@ function Uploader({ field }) {
   const [uploaded, setUploaded] = useState(null);
   const [error, setError] = useState(false);
 
-  const { setLoading } = useLoading();
   const { notifyError } = useNotification();
 
   useEffect(() => {
-    if (field.value?.url) {
-      setPreview(field.value.url);
-      setUploaded(field.value);
+    const setDataFile = () => {
+      if (field.value?.url) {
+        setPreview(field.value.url);
+        setUploaded(field.value);
+        return;
+      }
+
+      setPreview(null);
+      setUploaded(null);
     }
+
+
+    setDataFile();
   }, [field.value]);
 
-  // UPLOAD FILE TO SERVER
-  const uploadToServer = async (file) => {
+  useEffect(() => {
+    return () => {
+      if (preview?.startsWith("blob:")) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
+
+  // PREPARE LOCAL FILE WITHOUT UPLOAD
+  const prepareLocalFile = async (file) => {
     const options = {
-      maxSizeMB: 4, // Target ukuran di bawah limit Vercel (4.5MB)
-      maxWidthOrHeight: 2560, // Menjaga resolusi tetap tajam (Full HD+)
-      useWebWorker: true, // Agar UI tidak freeze saat kompresi
-      initialQuality: 0.8, // Kualitas awal 80%
+      maxSizeMB: 4,
+      maxWidthOrHeight: 2560,
+      useWebWorker: true,
+      initialQuality: 0.8,
     };
 
-    try {
-      setLoading(true);
-      let fileToUpload = file;
-
-      if (file.size > 4 * 1024 * 1024) {
-        console.log(
-          `Compressing ${file.name}... original size: ${(file.size / 1024 / 1024).toFixed(2)} MB`,
-        );
-        fileToUpload = await imageCompression(fileToUpload, options);
-        console.log(
-          `Compressed size: ${(fileToUpload.size / 1024 / 1024).toFixed(2)} MB`,
-        );
-      }
-
-      if (uploaded?.public_id) {
-        const resDelete = await deleteFile(uploaded.public_id);
-      }
-      
-      const resUpload = await uploadFile(fileToUpload);
-      if (!resUpload.success) {
-        throw new Error("Error upload data to server");
-      }
-
-      const response = resUpload.data;
-      field.onChange(response);
-      setUploaded(response);
-      setPreview(URL.createObjectURL(file));
-    } catch (error) {
-      notifyError('Upload failed. Please check your connection and try again.');
-    } finally {
-      setError(false);
-      setLoading(false);
+    let finalFile = file;
+    if (file.size > 4 * 1024 * 1024) {
+      finalFile = await imageCompression(file, options);
     }
+
+    const nextPreview = URL.createObjectURL(finalFile);
+    field.onChange({
+      file: finalFile,
+      url: nextPreview,
+      public_id: "",
+    });
+    setUploaded({
+      file: finalFile,
+      url: nextPreview,
+      public_id: "",
+    });
+    setPreview(nextPreview);
+    setError(false);
   };
 
   // HANDLE FILE
-  const handleFile = (file) => {
+  const handleFile = async (file) => {
     if (!file) return;
 
     if (file.size > MAX_SIZE) {
       return setError(true);
     }
 
-    return uploadToServer(file);
+    try {
+      await prepareLocalFile(file);
+    } catch (error) {
+      notifyError("Failed to process image. Please try another file.");
+    }
   };
 
   // INPUT CHANGE
@@ -111,26 +114,10 @@ function Uploader({ field }) {
   };
 
   // DELETE
-  const handleRemove = async () => {
-    try {
-      setLoading(true);
-
-      if (!uploaded.public_id) {
-        return null;
-      }
-
-      const res = await deleteFile(uploaded.public_id);
-
-      if (res.success) {
-        field.onChange(null);
-        setPreview(null);
-        setUploaded(null);
-      }
-    } catch (error) {
-      notifyError('Delete failed. Please check your connection and try again.');
-    } finally {
-      setLoading(false);
-    }
+  const handleRemove = () => {
+    field.onChange(null);
+    setPreview(null);
+    setUploaded(null);
   };
 
   const handleButtonClick = () => {

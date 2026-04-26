@@ -21,10 +21,15 @@ import {
 } from "@/services/ProjectService";
 
 import { PROJECT_DEFAULT_VALUES } from "@/constant/projectDefaultValue";
-import { extractPublicIds } from "@/utils/clientTools";
+import {
+  extractPublicIds,
+  prepareProjectPayload,
+  extractRemovedPublicIds,
+} from "@/utils/clientTools";
 
 export default function EditProjectPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [initialData, setInitialData] = useState(null);
 
   const router = useRouter();
   const params = useParams();
@@ -45,6 +50,7 @@ export default function EditProjectPage() {
         if (!res.success) {
           throw new Error("Failed get detail");
         }
+        setInitialData(res.data);
         reset(res.data);
       } catch (error) {
         notifyError(error.message);
@@ -62,12 +68,16 @@ export default function EditProjectPage() {
     try {
       setLoading(true);
       const project_id = data._id;
+      const payload = await prepareProjectPayload(data);
 
-      const result = await updateProjectById(project_id, data);
+      const result = await updateProjectById(project_id, payload);
 
       if (!result.success) {
         throw new Error("Failed update project");
       }
+
+      const removedIds = extractRemovedPublicIds(initialData, payload);
+      await deleteAllFile(removedIds);
 
       router.push("/admin/dashboard");
     } catch (error) {
