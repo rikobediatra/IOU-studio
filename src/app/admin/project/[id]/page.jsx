@@ -110,7 +110,7 @@ export default function EditProjectPage() {
 
           <div className="w-full h-full border bg-[#FAFAFA] rounded-[24px] flex flex-col">
             <section className="px-6 py-4">
-              <p>Edit Project</p>
+              <p className="text-base font-medium">Edit Project</p>
             </section>
 
             <section className="border-t grow p-6">

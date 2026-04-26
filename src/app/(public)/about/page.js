@@ -86,9 +86,7 @@ export default function AboutPages() {
       <Introduction />
       <Process listService={listService}/>
       <Approach listApproach={listApproach}/>
-
-      {/* HIDE SECTION */}
-      {/* <OurTeam listTeam={team}/> */}
+      <OurTeam listTeam={team}/>
     </main>
   );
 }

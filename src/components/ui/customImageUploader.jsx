@@ -10,6 +10,7 @@ import { useFormContext, Controller } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
 import { useLoading } from "@/context/LoadingContext";
+import { useNotification } from "@/context/NotificationContext";
 import { uploadFile, deleteFile } from "@/services/ProjectService";
 
 export default function CustomImageUploader({ name }) {
@@ -34,6 +35,7 @@ function Uploader({ field }) {
   const [error, setError] = useState(false);
 
   const { setLoading } = useLoading();
+  const { notifyError } = useNotification();
 
   useEffect(() => {
     if (field.value?.url) {
@@ -45,31 +47,32 @@ function Uploader({ field }) {
   // UPLOAD FILE TO SERVER
   const uploadToServer = async (file) => {
     const options = {
-      maxSizeMB: 4,           // Target ukuran di bawah limit Vercel (4.5MB)
+      maxSizeMB: 4, // Target ukuran di bawah limit Vercel (4.5MB)
       maxWidthOrHeight: 2560, // Menjaga resolusi tetap tajam (Full HD+)
-      useWebWorker: true,     // Agar UI tidak freeze saat kompresi
-      initialQuality: 0.8     // Kualitas awal 80%
+      useWebWorker: true, // Agar UI tidak freeze saat kompresi
+      initialQuality: 0.8, // Kualitas awal 80%
     };
 
     try {
       setLoading(true);
       let fileToUpload = file;
 
-      if (file.size > (4 * 1024 * 1024)) {
-        console.log(`Compressing ${file.name}... original size: ${(file.size / 1024 / 1024).toFixed(2)} MB`);
+      if (file.size > 4 * 1024 * 1024) {
+        console.log(
+          `Compressing ${file.name}... original size: ${(file.size / 1024 / 1024).toFixed(2)} MB`,
+        );
         fileToUpload = await imageCompression(fileToUpload, options);
-        console.log(`Compressed size: ${(fileToUpload.size / 1024 / 1024).toFixed(2)} MB`);
+        console.log(
+          `Compressed size: ${(fileToUpload.size / 1024 / 1024).toFixed(2)} MB`,
+        );
       }
 
-      const promiseUpload = [
-        uploadFile(fileToUpload),
-        uploaded?.public_id ? deleteFile(uploaded.public_id) : Promise.resolve({ success: true })
-      ];
-
-      // update async await
-      const [resUpload, resDelete] = await Promise.all(promiseUpload);
-
-      if (!resUpload.success || !resDelete.success) {
+      if (uploaded?.public_id) {
+        const resDelete = await deleteFile(uploaded.public_id);
+      }
+      
+      const resUpload = await uploadFile(fileToUpload);
+      if (!resUpload.success) {
         throw new Error("Error upload data to server");
       }
 
@@ -78,7 +81,7 @@ function Uploader({ field }) {
       setUploaded(response);
       setPreview(URL.createObjectURL(file));
     } catch (error) {
-      console.log(error);
+      notifyError('Upload failed. Please check your connection and try again.');
     } finally {
       setError(false);
       setLoading(false);
@@ -116,13 +119,15 @@ function Uploader({ field }) {
         return null;
       }
 
-      await deleteFile(uploaded.public_id);
+      const res = await deleteFile(uploaded.public_id);
 
-      field.onChange(null);
-      setPreview(null);
-      setUploaded(null);
+      if (res.success) {
+        field.onChange(null);
+        setPreview(null);
+        setUploaded(null);
+      }
     } catch (error) {
-      console.log(error);
+      notifyError('Delete failed. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -205,6 +210,7 @@ function Uploader({ field }) {
       <div className="flex justify-between items-center gap-2">
         {/* DELETE */}
         <button
+          type="button"
           onClick={handleRemove}
           disabled={!preview}
           className="w-full normal-case px-6 py-3
