@@ -10,6 +10,27 @@ import ServiceModeling from "@/assets/images/ServiceModeling.png";
 import ServiceAnimation from "@/assets/images/ServiceAnimation.png";
 import ServiceTestSimulation from "@/assets/images/ServiceTestSimulation.png";
 
+const siteUrl = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000").replace(
+  /\/$/,
+  "",
+);
+
+export const metadata = {
+  title: "Home",
+  description:
+    "Discover IOU Studio services, process, and selected works in industrial design, spatial design, 3D modeling, and product development.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "IOU Studio - Design Services and Selected Works",
+    description:
+      "Discover IOU Studio services, process, and selected works in industrial design, spatial design, 3D modeling, and product development.",
+    url: siteUrl,
+    type: "website",
+  },
+};
+
 
 export default async function HomePages() {
   let listProjects = [];
@@ -55,6 +76,20 @@ export default async function HomePages() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "IOU Studio",
+            url: siteUrl,
+            sameAs: [],
+            description:
+              "Industrial design and product development studio delivering meaningful and functional products.",
+          }),
+        }}
+      />
       <Hero />
       <About />
       <Services listService={listService} />

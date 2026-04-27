@@ -8,6 +8,22 @@ import Define from "@/assets/images/about/Define.png";
 import Design from "@/assets/images/about/Design.png";
 import Deliver from "@/assets/images/about/Deliver.png";
 
+export const metadata = {
+  title: "About",
+  description:
+    "Learn IOU Studio's design process, team, and approach to building meaningful products from discovery to delivery.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About IOU Studio",
+    description:
+      "Learn IOU Studio's design process, team, and approach to building meaningful products from discovery to delivery.",
+    url: "/about",
+    type: "website",
+  },
+};
+
 export default function AboutPages() {
   const listService = [
     {
