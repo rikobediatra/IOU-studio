@@ -1,5 +1,6 @@
 import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
+import TopProgressBar from "@/components/ui/TopProgressBar";
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={hanken.variable}>
       <body className="min-h-screen bg-[#F5F5F5] font-hanken">
+        <TopProgressBar />
         {children}
       </body>
     </html>
