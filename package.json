@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.13.6",
     "browser-image-compression": "^2.0.2",
     "class-variance-authority": "^0.7.1",
