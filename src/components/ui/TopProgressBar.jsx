@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -45,17 +46,6 @@ export default function TopProgressBar() {
     }, PROGRESS_INTERVAL_MS);
   };
 
-  const finishProgress = () => {
-    clearProgressInterval();
-    setProgress(100);
-
-    clearHideTimeout();
-    hideTimeoutRef.current = setTimeout(() => {
-      setIsVisible(false);
-      setProgress(0);
-    }, HIDE_DELAY_MS);
-  };
-
   useEffect(() => {
     const handleDocumentClick = (event) => {
       if (event.defaultPrevented) return;
@@ -99,6 +89,18 @@ export default function TopProgressBar() {
   }, []);
 
   useEffect(() => {
+    
+  const finishProgress = () => {
+    clearProgressInterval();
+    setProgress(100);
+
+    clearHideTimeout();
+    hideTimeoutRef.current = setTimeout(() => {
+      setIsVisible(false);
+      setProgress(0);
+    }, HIDE_DELAY_MS);
+  };
+
     finishProgress();
   }, [pathname, searchParams]);
 

@@ -1,4 +1,5 @@
 import { Hanken_Grotesk } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import TopProgressBar from "@/components/ui/TopProgressBar";
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={hanken.variable}>
       <body className="min-h-screen bg-[#F5F5F5] font-hanken">
-        <TopProgressBar />
+        <Suspense fallback={null}>
+          <TopProgressBar />
+        </Suspense>
         {children}
       </body>
     </html>
