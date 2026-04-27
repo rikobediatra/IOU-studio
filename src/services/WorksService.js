@@ -1,9 +1,12 @@
-const getProjectById = async (url) => {
-  const res = await fetch(url, {
-    cache: "no-store",
+const REVALIDATE_SECONDS = 120;
+
+const getPublicProjects = async (limit) => {
+  const basedURL = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+  const query = limit ? `?limit=${limit}` : "";
+  const res = await fetch(`${basedURL}/api/projects${query}`, {
     next: {
+      revalidate: REVALIDATE_SECONDS,
       tags: ["works"],
-      // revalidate: 30
     },
   });
 
@@ -14,4 +17,20 @@ const getProjectById = async (url) => {
   return res.json();
 };
 
-export default getProjectById
+const getPublicProjectById = async (projectId) => {
+  const basedURL = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+  const res = await fetch(`${basedURL}/api/projects/${projectId}`, {
+    next: {
+      revalidate: REVALIDATE_SECONDS,
+      tags: ["works"],
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetching data");
+  }
+
+  return res.json();
+};
+
+export { getPublicProjects, getPublicProjectById };

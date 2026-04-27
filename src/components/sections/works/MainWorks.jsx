@@ -1,39 +1,11 @@
-"use client"
+"use client";
 
 import CardWorks from "@/components/ui/cardWorks";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useLoading } from "@/context/LoadingContext";
-import { useEffect, useState } from "react";
-import { getProjects } from "@/services/ProjectService";
 
 import { CaretRight } from "phosphor-react";
 
-export default function MainWorks() {
-  const [listProjects, setListProjects] = useState([]);
-  const router = useRouter();
-  const { setLoading } = useLoading();
-
-  useEffect(() => {
-    const fetchDataProject = async () => {
-      try {
-        // set loading
-        setLoading(true);
-        const res = await getProjects();
-        
-        if (res.success) {
-          setListProjects(res.data);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchDataProject()
-  }, [setLoading]);
-
+export default function MainWorks({ listProjects = [] }) {
   return (
     <section
       id="works-pages"
@@ -57,16 +29,16 @@ export default function MainWorks() {
           const sequenceNumber = listProjects.length - index;
           const displayId = `P-${sequenceNumber.toString().padStart(4, "0")}`;
           return (
-            <div
+            <Link
               key={project._id}
               className="w-110.75"
-              onClick={() => router.push(`/works/detail/${project._id}`)}
+              href={`/works/detail/${project._id}`}
             >
               <CardWorks
                 work={project}
                 displayId={displayId}
               />
-            </div>
+            </Link>
           );
         })}
       </div>

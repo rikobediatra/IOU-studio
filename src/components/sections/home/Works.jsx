@@ -1,37 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useLoading } from "@/context/LoadingContext";
-import { getProjects } from "@/services/ProjectService";
+import Link from "next/link";
 import { ArrowRight } from "phosphor-react";
 
-export default function Works({}) {
-  const [listProjects, setListProjects] = useState([]);
-  const router = useRouter();
-  const { setLoading } = useLoading();
-
-  useEffect(() => {
-    const fetchDataProject = async () => {
-      try {
-        // set loading
-        setLoading(true);
-        const res = await getProjects(4);
-
-        if (res.success) {
-          setListProjects(res.data);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDataProject();
-  }, [setLoading]);
-
+export default function Works({ listProjects = [] }) {
   return (
     <section id="works" className="min-h-screen w-full pt-28 px-6 md:px-10">
       <div className="mb-20 grid grid-cols-1 gap-4">
@@ -86,18 +59,19 @@ export default function Works({}) {
 
       {/* FOOTER BUTTON */}
       <div className="my-14 flex justify-center">
-        <button
+        <Link
+          href="/works"
           className="
           border border-black rounded-full flex flex-row items-center gap-4.5 transition-all duration-300
+          uppercase text-sm font-light px-8 py-[0.813rem]
           cursor-pointer hover:bg-black hover:text-white
           "
-          onClick={() => router.push("/works")}
         >
           SEE OUR WORKS{" "}
           <span>
             <ArrowRight width={14} height={14} />
           </span>
-        </button>
+        </Link>
       </div>
     </section>
   );

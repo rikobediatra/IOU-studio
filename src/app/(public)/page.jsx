@@ -2,6 +2,7 @@ import Hero from "@/components/sections/home/Hero";
 import About from "@/components/sections/home/About";
 import Services from "@/components/sections/home/Services";
 import Works from "@/components/sections/home/Works";
+import { getPublicProjects } from "@/services/WorksService";
 
 import ServiceIndustrialDesign from "@/assets/images/ServiceIndustrialDesign.png";
 import ServiceSpatialDesign from "@/assets/images/ServiceSpatialDesign.png";
@@ -10,7 +11,15 @@ import ServiceAnimation from "@/assets/images/ServiceAnimation.png";
 import ServiceTestSimulation from "@/assets/images/ServiceTestSimulation.png";
 
 
-export default function HomePages() {
+export default async function HomePages() {
+  let listProjects = [];
+  try {
+    const projectsResponse = await getPublicProjects(4);
+    listProjects = projectsResponse?.data || [];
+  } catch {
+    listProjects = [];
+  }
+
   const listService = [
     {
       title: "INDUSTRIAL DESIGN",
@@ -49,7 +58,7 @@ export default function HomePages() {
       <Hero />
       <About />
       <Services listService={listService} />
-      <Works />
+      <Works listProjects={listProjects} />
     </>
   );
 }

@@ -2,14 +2,12 @@ import _ from "lodash";
 import DetailWorks from "@/components/sections/works/DetailWorks";
 import Summarize from "@/components/sections/works/Summaries";
 import WorksDescription from "@/components/sections/works/WorksDescription";
-import getProjectById from "@/services/WorksService";
+import { getPublicProjectById } from "@/services/WorksService";
 import { notFound } from "next/navigation";
 
 export default async function Detail({ params }) {
   const { slug } = await params;
-  const basedURL = process.env.NEXT_PUBLIC_API_URL;
-
-  const result = await getProjectById(`${basedURL}api/projects/${slug}`);
+  const result = await getPublicProjectById(slug);
   const detailWork = _.get(result, "data", null);
 
   if (!detailWork || detailWork.length <= 0) {
