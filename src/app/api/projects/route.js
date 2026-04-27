@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/mongodb";
 import Project from "@/models/project.model";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req) {
   try {
@@ -8,6 +9,7 @@ export async function POST(req) {
     const body = await req.json();
 
     const project = await Project.create(body);
+    revalidateTag("works");
 
     return Response.json({
       success: true,

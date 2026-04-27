@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/mongodb";
 import Project from "@/models/project.model";
 import mongoose from "mongoose";
+import { revalidateTag } from "next/cache";
 
 export async function GET(_req, context) {
   try {
@@ -72,6 +73,7 @@ export async function PUT(req, context) {
         { status: 404 },
       );
     }
+    revalidateTag("works");
 
     return Response.json({
       success: true,
@@ -106,6 +108,7 @@ export async function DELETE(_req, context) {
         { status: 404 },
       );
     }
+    revalidateTag("works");
 
     return Response.json({
       success: true,

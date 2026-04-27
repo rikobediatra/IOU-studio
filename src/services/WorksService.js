@@ -1,4 +1,4 @@
-const REVALIDATE_SECONDS = 120;
+const REVALIDATE_SECONDS = 600;
 
 const getPublicProjects = async (limit) => {
   const basedURL = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
