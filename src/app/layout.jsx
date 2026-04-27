@@ -2,6 +2,7 @@ import { Hanken_Grotesk } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import TopProgressBar from "@/components/ui/TopProgressBar";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
           <TopProgressBar />
         </Suspense>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
