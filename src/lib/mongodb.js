@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const databaseName = process.env.dbName
 
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI in .env");
+if (!MONGODB_URI || !databaseName) {
+  throw new Error("Please completed your .env");
 }
 
 let cached = global.mongoose;
@@ -17,7 +18,7 @@ export async function connectDB() {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
-      dbName: "iou_studio",
+      dbName: databaseName,
     });
   }
 
