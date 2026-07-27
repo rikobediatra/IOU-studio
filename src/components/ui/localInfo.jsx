@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Square } from "phosphor-react"
+import { Square } from "phosphor-react";
 
 export default function LocalInfo({ textColor, bgColor }) {
   const [time, setTime] = useState("");
@@ -10,32 +10,36 @@ export default function LocalInfo({ textColor, bgColor }) {
   const squareColor = bgColor === 'bg-foreground' ? '#EBEBEB' : '#181818';
 
   useEffect(() => {
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const locale = navigator.language;
-
-    const city = timeZone.split("/")[1]?.replace("_", " ");
+    const targetTimeZone = "Asia/Jakarta"; 
+    
+    const city = "Jakarta";
     const country = "Indonesia";
 
     const updateClock = () => {
       const now = new Date();
 
-      const formattedTime = now.toLocaleTimeString(locale, {
+      const formattedTime = now.toLocaleTimeString("id-ID", {
+        timeZone: targetTimeZone,
         hour: "2-digit",
         minute: "2-digit",
-        second: '2-digit',
-        hour12: false
+        second: "2-digit",
+        hour12: false,
       });
 
-      const offset = -now.getTimezoneOffset() / 60;
-      const gmtString = `GMT${offset >= 0 ? "+" : ""}${offset}`;
+      const timeZoneOffset = new Intl.DateTimeFormat("en-US", {
+        timeZone: targetTimeZone,
+        timeZoneName: "shortOffset",
+      })
+        .formatToParts(now)
+        .find((part) => part.type === "timeZoneName")?.value || "GMT+7";
 
       setLocation(`${city}, ${country}`);
-      setTime(formattedTime);
-      setGmt(gmtString);
+      setTime(formattedTime.replace(/\./g, ":"));
+      setGmt(timeZoneOffset);
     };
 
     updateClock();
-    const interval = setInterval(updateClock, 60000);
+    const interval = setInterval(updateClock, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -44,7 +48,7 @@ export default function LocalInfo({ textColor, bgColor }) {
     <div className={`${textColor} flex items-center gap-4 text-[1rem] font-light tracking-[-2%]`}>
       <span className="opacity-60 hover:opacity-100">{location}</span>
       <span className={`opacity-60 hover:opacity-100 ${bgColor}`}>
-        <Square width={8} height={8} color={`${squareColor}`}/>
+        <Square width={8} height={8} color={`${squareColor}`} />
       </span>
       <span>
         {time} {gmt}

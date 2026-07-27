@@ -113,7 +113,7 @@ export default function TopProgressBar() {
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 right-0 z-[9999] h-1"
+      className="pointer-events-none fixed top-0 left-0 right-0 z-9999 h-1"
       aria-hidden="true"
     >
       <div
