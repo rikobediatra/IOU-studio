@@ -31,13 +31,12 @@ export default function Works({ listProjects = [] }) {
                 cursor-pointer text-foreground lg:text-background hover:text-foreground"
               >
                 <Link
-                  className="w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100
-                  relative overflow-hidden"
+                  className="block relative overflow-hidden w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100"
                   href={`/works/detail/${project._id}`}
                 >
                   <Image
                     src={project.thumbnail?.url}
-                    alt={project.title}
+                    alt={project.title || "Project Image"}
                     unoptimized
                     fill
                     sizes="400px"
