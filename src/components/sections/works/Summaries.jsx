@@ -46,7 +46,7 @@ export default function Summarize({ detailWork }) {
           {/* TIMELINE */}
           <div className="flex-none">
             <h4 className="mb-6">TIMELINE</h4>
-            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline} YEARS</p>
+            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline}</p>
           </div>
 
           {/* YEAR */}

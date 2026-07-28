@@ -30,12 +30,13 @@ export default function Works({ listProjects = [] }) {
                 className="group w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100 
                 cursor-pointer text-foreground lg:text-background hover:text-foreground"
               >
-                <div
+                <Link
                   className="w-95.5 h-95.5 md:w-83.5 md:h-83.5 lg:w-100 lg:h-100
                   relative overflow-hidden"
+                  href={`/works/detail/${project._id}`}
                 >
                   <Image
-                    src={project.thumbnail.url}
+                    src={project.thumbnail?.url}
                     alt={project.title}
                     unoptimized
                     fill
@@ -45,7 +46,7 @@ export default function Works({ listProjects = [] }) {
                       opacity-100 lg:opacity-50 lg:hover:opacity-100
                     "
                   />
-                </div>
+                </Link>
 
                 <div className="flex justify-between items-center h-4.5 mt-4 text-sm tracking-wider text-center">
                   <span className="uppercase">{displayId}</span>
