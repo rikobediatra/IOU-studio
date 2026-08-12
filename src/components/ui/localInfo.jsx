@@ -10,9 +10,9 @@ export default function LocalInfo({ textColor, bgColor }) {
   const squareColor = bgColor === 'bg-foreground' ? '#EBEBEB' : '#181818';
 
   useEffect(() => {
-    const targetTimeZone = "Asia/Jakarta"; 
+    const targetTimeZone = "Asia/Surabaya"; 
     
-    const city = "Jakarta";
+    const city = "Surabaya";
     const country = "Indonesia";
 
     const updateClock = () => {
