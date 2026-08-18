@@ -87,7 +87,7 @@ export default function AboutPages() {
     },
     {
       name: "KEVIN OCTAVIADYANTO",
-      role: "UI DESIGNER",
+      role: "Art Director",
       image: "/images/team/Kevin.png",
     },
     {
