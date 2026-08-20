@@ -118,6 +118,9 @@ html {
     @apply uppercase tracking-[-2%] leading-[110%] text-[1.5rem] lg:text-[2rem] 
   }
   h4 {
+    @apply uppercase leading-[110%] text-lg lg:text-xl
+  }
+  h5 {
     @apply leading-[110%] text-lg lg:text-xl
   }
   p {
