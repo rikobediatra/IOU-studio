@@ -14,9 +14,7 @@ export default function Summarize({ detailWork }) {
           key={id}
           className="
             uppercase px-4 py-1.5 text-xs font-light 
-            border border-foreground rounded-fullborder rounded-full cursor-pointer
-            hover:bg-foreground hover:text-background transition-all duration-300 ease-out
-            hover:-translate-y-0.5
+            border border-muted-foreground border-foreground rounded-fullborder rounded-full
         ">
           {listService[id]}
         </span>
@@ -40,19 +38,19 @@ export default function Summarize({ detailWork }) {
         ">
           <div className="flex-none">
             <h4 className="mb-6">CLIENT</h4>
-            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.client}</p>
+            <p className='uppercase text-xs font-light leading-[110%] py-1.5'>{detailWork.client}</p>
           </div>
 
           {/* TIMELINE */}
           <div className="flex-none">
             <h4 className="mb-6">TIMELINE</h4>
-            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline}</p>
+            <p className='uppercase text-xs font-light leading-[110%] py-1.5'>{detailWork.timeline}</p>
           </div>
 
           {/* YEAR */}
           <div>
             <h4 className="mb-6">YEAR</h4>
-            <p className='text-xs font-light leading-[110%] py-1.5'>{detailWork.year}</p>
+            <p className='uppercase text-xs font-light leading-[110%] py-1.5'>{detailWork.year}</p>
           </div>
         </div>
       </div>
