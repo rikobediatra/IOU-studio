@@ -118,10 +118,10 @@ html {
     @apply uppercase tracking-[-2%] leading-[110%] text-[1.5rem] lg:text-[2rem] 
   }
   h4 {
-    @apply uppercase leading-[110%] text-lg lg:text-xl
+    @apply leading-[110%] text-lg lg:text-xl
   }
   p {
-    @apply uppercase leading-[160%] text-sm font-light
+    @apply leading-[160%] text-sm font-light
   }
   button {
     @apply uppercase text-sm font-light px-8 py-[0.813rem]

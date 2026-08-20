@@ -56,10 +56,10 @@ export default function Footer() {
           </div>
           <div>
             <ul className="leading-[160%] text-sm font-light flex flex-col items-end gap-6 opacity-60">
-              <li><a href="#">EMAIL</a></li>
-              <li><a href="#">INSTAGRAM</a></li>
-              <li><a href="#">BEHANCE</a></li>
-              <li><a href="#">LINKEDIN</a></li>
+              <li><a href="mailto:ioustudioworks@gmail.com">EMAIL</a></li>
+              <li><a href="https://www.instagram.com/iou.id/">INSTAGRAM</a></li>
+              <li><a href="https://www.behance.net/ioustudio">BEHANCE</a></li>
+              <li><a href="https://www.linkedin.com/company/iou-studio">LINKEDIN</a></li>
             </ul>
           </div>
         </div>
