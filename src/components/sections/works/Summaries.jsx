@@ -13,8 +13,8 @@ export default function Summarize({ detailWork }) {
         <span
           key={id}
           className="
-            uppercase px-4 py-1.5 text-xs font-light 
-            border border-muted-foreground border-foreground rounded-fullborder rounded-full
+            uppercase px-4 py-1.5 text-sm font-light 
+            border border-(--muted-foreground) border-foreground rounded-fullborder rounded-full
         ">
           {listService[id]}
         </span>
