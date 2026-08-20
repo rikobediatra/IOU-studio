@@ -10,7 +10,7 @@ export default function Process({ listService }) {
       id="process"
       className="min-h-screen w-full pt-30"
     >
-      <div className="mb-20 grid grid-cols-1">
+      <div className="mb-40 grid grid-cols-1">
         <h2 className="mb-10">Our Process</h2>
         <h4>
           How We Design —<br />

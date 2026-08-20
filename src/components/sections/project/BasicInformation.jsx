@@ -42,7 +42,7 @@ export default function FormBasicInformation() {
         <CustomLabel>Thumbnail</CustomLabel>
         <CustomImageUploader name="thumbnail"/>
       </div>
-      <div>
+      <div className="flex-1">
         <CustomLabel>Service</CustomLabel>
         <CustomMultiSelect name="services"/>
       </div>
