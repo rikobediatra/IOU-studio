@@ -32,8 +32,8 @@ export default function Hero() {
           <div className="flex flex-row gap-2 items-center">
             <div className="w-1 h-16 md:h-12 bg-white" />
             <p>
-              Every great product starts with a conversation. 
-              We turn ideas into designs that inspire, engage, and grow businesses.
+              Every great products starts with a conversation.
+              See our works down below and turn your ideas into design.
             </p>
           </div>
           <div>

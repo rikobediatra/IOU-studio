@@ -60,7 +60,7 @@ html {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   /* Primary Brand 496C6F */
-  --primary: oklch(0.45 0.05 195);
+  --primary: oklch(0 0 0);
   --primary-foreground: oklch(1 0 0);
   /* Secondary / Neutral */
   --secondary: oklch(0.87 0 0); /* DDDDDD */
@@ -71,10 +71,10 @@ html {
   --accent-foreground: oklch(0.145 0 0);
   --border: oklch(0.87 0 0);
   --input: oklch(0.87 0 0);
-  --ring: oklch(0.45 0.05 195);
+  --ring: oklch(0 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   /* Custom Token */
-  --loading: oklch(0.75 0.04 195);
+  --loading: oklch(0.35 0 0);
 }
 
 .dark {
