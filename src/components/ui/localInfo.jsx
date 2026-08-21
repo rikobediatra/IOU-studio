@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Square } from "phosphor-react";
 
 export default function LocalInfo({ textColor, bgColor }) {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [gmt, setGmt] = useState("");
-  const squareColor = bgColor === 'bg-foreground' ? '#EBEBEB' : '#181818';
+  const squareColor = bgColor === "bg-foreground" ? "#EBEBEB" : "#181818";
 
   useEffect(() => {
     const targetTimeZone = "Asia/Jakarta"; 
@@ -47,8 +46,13 @@ export default function LocalInfo({ textColor, bgColor }) {
   return (
     <div className={`${textColor} flex items-center gap-4 text-[1rem] font-light tracking-[-2%]`}>
       <span className="opacity-60 hover:opacity-100">{location}</span>
-      <span className={`opacity-60 hover:opacity-100 ${bgColor}`}>
-        <Square width={8} height={8} color={`${squareColor}`} />
+      <span className="inline-flex items-center justify-center opacity-80 transition-opacity hover:opacity-100">
+        <span
+          className="block h-2 w-2 rounded-[2px]"
+          style={{
+            backgroundColor: squareColor,
+          }}
+        />
       </span>
       <span>
         {time} {gmt}

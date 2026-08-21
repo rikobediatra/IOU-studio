@@ -87,7 +87,7 @@ export default function Navbar() {
 
         {/* Right Info Desktop */}
         <div className={`${textColor} hidden md:flex items-center gap-6`}>
-          <LocalInfo textColor bgColor/>
+          <LocalInfo textColor={textColor} bgColor={bgColor} />
         </div>
 
         {/* Mobile Menu */}

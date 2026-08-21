@@ -23,7 +23,7 @@ export default function Summarize({ detailWork }) {
   };
 
   return (
-    <section id="summaries" className="px-10 lg:px-0 py-30">
+    <section id="summaries" className="px-10 lg:px-0 py-10">
       <h2 className="text-[2.5rem]">{detailWork.subTitle}</h2>
       <div className="my-10 flex flex-col lg:flex-row flex-wrap gap-20">
         <div>
