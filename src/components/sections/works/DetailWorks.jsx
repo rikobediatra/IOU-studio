@@ -26,7 +26,13 @@ export default function DetailWorks({ detailWork }) {
             <h1>
               {detailWork.title}
             </h1>
-            <button className="flex items-center justify-center w-12 h-12 px-0 py-0 rounded-full bg-white text-black cursor-pointer">
+            <button
+              className="flex items-center justify-center w-12 h-12 px-0 py-0 rounded-full bg-white text-black cursor-pointer"
+              onClick={() => {
+                const section = document.getElementById("summaries");
+                section?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
               <ArrowDown className="hover:scale-150" width={14} height={14} />
             </button>
           </div>

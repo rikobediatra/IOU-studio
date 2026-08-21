@@ -14,7 +14,7 @@ export default function Summarize({ detailWork }) {
           key={id}
           className="
             uppercase px-4 py-1.5 text-sm font-light 
-            border-(--muted-foreground) border-foreground rounded-fullborder rounded-full
+            border-(--border-color) border-foreground rounded-fullborder rounded-full
         ">
           {listService[id]}
         </span>
@@ -23,7 +23,7 @@ export default function Summarize({ detailWork }) {
   };
 
   return (
-    <section className="px-10 lg:px-0 py-30">
+    <section id="summaries" className="px-10 lg:px-0 py-30">
       <h2 className="text-[2.5rem]">{detailWork.subTitle}</h2>
       <div className="my-10 flex flex-col lg:flex-row flex-wrap gap-20">
         <div>
