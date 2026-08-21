@@ -25,9 +25,7 @@ export default function WorksDescription({ section, detail }) {
           />
         </div>
       }
-      <h5 
-        className="text-[1rem]"
-      >
+      <h5 className="text-[1rem] md:max-w-4xl">
         {detail.paragraph}
       </h5>
       <p className="border-l border-[#BCBFC8] pl-2.5 md:max-w-xl">
